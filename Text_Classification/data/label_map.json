@@ -6,7 +6,9 @@
     "Governance": 3,
     "Health": 4,
     "Infrastructure": 5,
-    "Water & Sanitation": 6
+    "Public Safety": 6,
+    "Revenue & Civic": 7,
+    "Water & Sanitation": 8
   },
   "id2label": {
     "0": "Education",
@@ -15,6 +17,8 @@
     "3": "Governance",
     "4": "Health",
     "5": "Infrastructure",
-    "6": "Water & Sanitation"
+    "6": "Public Safety",
+    "7": "Revenue & Civic",
+    "8": "Water & Sanitation"
   }
 }
