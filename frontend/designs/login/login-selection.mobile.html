@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Civic Pulse | Login Selection</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800;900&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container-low": "#f6f3f2",
+              "surface-container-highest": "#e5e2e1",
+              "inverse-surface": "#303030",
+              "secondary-fixed-dim": "#ffb786",
+              "on-background": "#1b1c1c",
+              "surface-tint": "#175ead",
+              "on-error-container": "#93000a",
+              "background": "#fcf9f8",
+              "on-secondary-container": "#642f00",
+              "surface-container-lowest": "#ffffff",
+              "on-surface-variant": "#41474e",
+              "inverse-on-surface": "#f3f0ef",
+              "secondary-container": "#ff8928",
+              "primary-fixed": "#d5e3ff",
+              "primary": "#00376d",
+              "secondary": "#964900",
+              "on-tertiary-fixed": "#00210c",
+              "surface-container": "#f0eded",
+              "on-tertiary-fixed-variant": "#005227",
+              "on-surface": "#1b1c1c",
+              "tertiary-fixed": "#8afaa7",
+              "on-tertiary-container": "#66d486",
+              "on-error": "#ffffff",
+              "on-tertiary": "#ffffff",
+              "on-secondary": "#ffffff",
+              "surface-container-high": "#eae7e7",
+              "surface-dim": "#dcd9d9",
+              "on-secondary-fixed-variant": "#723600",
+              "secondary-fixed": "#ffdcc6",
+              "primary-container": "#004d96",
+              "on-primary-fixed-variant": "#004689",
+              "surface-variant": "#e5e2e1",
+              "primary-fixed-dim": "#a8c8ff",
+              "on-primary": "#ffffff",
+              "tertiary-fixed-dim": "#6edd8d",
+              "error": "#ba1a1a",
+              "on-primary-container": "#9cc1ff",
+              "error-container": "#ffdad6",
+              "tertiary": "#00401d",
+              "outline-variant": "#c1c7cf",
+              "outline": "#72787f",
+              "on-primary-fixed": "#001b3c",
+              "tertiary-container": "#005a2b",
+              "inverse-primary": "#a8c8ff",
+              "surface-bright": "#fcf9f8",
+              "on-secondary-fixed": "#311300",
+              "surface": "#fcf9f8"
+            },
+            fontFamily: {
+              "headline": ["Public Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .bg-glass {
+        background: rgba(252, 249, 248, 0.85);
+        backdrop-filter: blur(20px);
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface antialiased min-h-screen flex flex-col">
+<!-- Top Navigation Anchor (Manual suppression check: Login screen usually hides nav, but TopAppBar as identity is requested) -->
+<header class="fixed top-0 w-full z-50 bg-[#e5e2e1]/85 backdrop-blur-2xl flex justify-between items-center px-6 h-16 w-full shadow-[0_8px_24px_rgba(27,28,28,0.06)]">
+<div class="text-xl font-black text-[#00376d] uppercase font-['Public_Sans'] tracking-tight">
+            Civic Pulse
+        </div>
+<div class="flex items-center gap-4">
+<div class="bg-surface-container-low px-3 py-1 rounded-full flex items-center gap-2">
+<span class="text-xs font-bold text-primary uppercase">EN</span>
+<span class="text-xs font-medium text-on-surface-variant opacity-50 uppercase">हिं</span>
+</div>
+</div>
+</header>
+<main class="flex-grow pt-24 pb-12 px-6 flex flex-col items-center justify-center">
+<!-- Brand Intro -->
+<div class="w-full max-w-md mb-12 text-center md:text-left">
+<h1 class="text-[3.5rem] leading-[1] font-black text-on-surface tracking-tighter mb-4 font-headline">
+                Select Your Portal.
+            </h1>
+<p class="text-body-lg text-on-surface-variant leading-relaxed max-w-xs mx-auto md:mx-0">
+                Access authoritative government services and administrative controls through our secure gateways.
+            </p>
+</div>
+<!-- Login Cards Container (Bento-style layout for mobile focus) -->
+<div class="w-full max-w-md space-y-6">
+<!-- Citizen Portal Card -->
+<div class="group relative overflow-hidden bg-surface-container-lowest rounded-xl p-8 transition-all duration-300 active:scale-95 border-none">
+<div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-[80px]" style="font-variation-settings: 'FILL' 0;">person</span>
+</div>
+<div class="relative z-10">
+<div class="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-primary-container/10 text-primary mb-6">
+<span class="material-symbols-outlined">how_to_reg</span>
+</div>
+<h2 class="text-2xl font-bold font-headline text-on-surface mb-2">Citizen Portal</h2>
+<p class="text-sm text-on-surface-variant mb-8 leading-relaxed">
+                        Register grievances, apply for certificates, and view local community updates.
+                    </p>
+<button class="w-full h-16 bg-primary text-on-primary rounded-md font-bold flex items-center justify-center gap-2 transition-all hover:bg-primary-container">
+                        Enter Citizen Space
+                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Officer Portal Card (Secondary Saffron Spark) -->
+<div class="group relative overflow-hidden bg-surface-container-low rounded-xl p-8 transition-all duration-300 active:scale-95 border-none">
+<div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-[80px]" style="font-variation-settings: 'FILL' 0;">shield_person</span>
+</div>
+<div class="relative z-10">
+<div class="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-secondary-container/20 text-secondary mb-6">
+<span class="material-symbols-outlined">admin_panel_settings</span>
+</div>
+<h2 class="text-2xl font-bold font-headline text-on-surface mb-2">Officer Portal</h2>
+<p class="text-sm text-on-surface-variant mb-8 leading-relaxed">
+                        Administrative access for verified municipal staff and law enforcement officials.
+                    </p>
+<button class="w-full h-16 bg-secondary-container text-on-secondary-container rounded-md font-bold flex items-center justify-center gap-2 transition-all hover:opacity-90">
+                        Admin Login
+                        <span class="material-symbols-outlined text-sm">lock_open</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Help Link -->
+<div class="mt-12 text-center">
+<p class="text-sm text-on-surface-variant">
+                Trouble logging in? <a class="text-primary font-bold underline underline-offset-4" href="#">Visit Support</a>
+</p>
+</div>
+</main>
+<!-- Footer Component from JSON -->
+<footer class="w-full mt-auto py-12 px-6 flex flex-col items-center justify-center text-center space-y-4 bg-[#f6f3f2] font-['Inter'] text-sm leading-relaxed">
+<div class="bg-[#e5e2e1] h-[1px] w-full mb-8"></div>
+<div class="font-['Public_Sans'] font-bold text-[#00376d]">Civic Pulse</div>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="text-[#1b1c1c] opacity-60 hover:opacity-100 hover:text-[#00376d] transition-all cursor-pointer" href="#">About Us</a>
+<a class="text-[#1b1c1c] opacity-60 hover:opacity-100 hover:text-[#00376d] transition-all cursor-pointer" href="#">Privacy Policy</a>
+<a class="text-[#1b1c1c] opacity-60 hover:opacity-100 hover:text-[#00376d] transition-all cursor-pointer" href="#">Contact Us</a>
+<a class="text-[#1b1c1c] opacity-60 hover:opacity-100 hover:text-[#00376d] transition-all cursor-pointer" href="#">Help</a>
+</div>
+<p class="text-[#1b1c1c] opacity-60 max-w-xs mx-auto">
+            © 2024 Civic Pulse. An authoritative digital pillar platform.
+        </p>
+</footer>
+<!-- Bottom Navigation suppressed as per "The Destination Rule" - Login is focused/transactional -->
+</body></html>

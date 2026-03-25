@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800;900&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container-low": "#f6f3f2",
+              "surface-container-highest": "#e5e2e1",
+              "inverse-surface": "#303030",
+              "secondary-fixed-dim": "#ffb786",
+              "on-background": "#1b1c1c",
+              "surface-tint": "#175ead",
+              "on-error-container": "#93000a",
+              "background": "#fcf9f8",
+              "on-secondary-container": "#642f00",
+              "surface-container-lowest": "#ffffff",
+              "on-surface-variant": "#41474e",
+              "inverse-on-surface": "#f3f0ef",
+              "secondary-container": "#ff8928",
+              "primary-fixed": "#d5e3ff",
+              "primary": "#00376d",
+              "secondary": "#964900",
+              "on-tertiary-fixed": "#00210c",
+              "surface-container": "#f0eded",
+              "on-tertiary-fixed-variant": "#005227",
+              "on-surface": "#1b1c1c",
+              "tertiary-fixed": "#8afaa7",
+              "on-tertiary-container": "#66d486",
+              "on-error": "#ffffff",
+              "on-tertiary": "#ffffff",
+              "on-secondary": "#ffffff",
+              "surface-container-high": "#eae7e7",
+              "surface-dim": "#dcd9d9",
+              "on-secondary-fixed-variant": "#723600",
+              "secondary-fixed": "#ffdcc6",
+              "primary-container": "#004d96",
+              "on-primary-fixed-variant": "#004689",
+              "surface-variant": "#e5e2e1",
+              "primary-fixed-dim": "#a8c8ff",
+              "on-primary": "#ffffff",
+              "tertiary-fixed-dim": "#6edd8d",
+              "error": "#ba1a1a",
+              "on-primary-container": "#9cc1ff",
+              "error-container": "#ffdad6",
+              "tertiary": "#00401d",
+              "outline-variant": "#c1c7cf",
+              "outline": "#72787f",
+              "on-primary-fixed": "#001b3c",
+              "tertiary-container": "#005a2b",
+              "inverse-primary": "#a8c8ff",
+              "surface-bright": "#fcf9f8",
+              "on-secondary-fixed": "#311300",
+              "surface": "#fcf9f8"
+            },
+            fontFamily: {
+              "headline": ["Public Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fcf9f8;
+        }
+        .font-headline {
+            font-family: 'Public Sans', sans-serif;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#e5e2e1]/85 backdrop-blur-2xl shadow-[0_8px_24px_rgba(27,28,28,0.06)] flex justify-between items-center px-6 h-16 w-full">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#00376d]">menu</span>
+<h1 class="text-xl font-black text-[#00376d] uppercase font-headline tracking-tight">Civic Pulse</h1>
+</div>
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center overflow-hidden border border-outline-variant/20">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="minimalist avatar of a professional person with a clean background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7NpeZ6L9HVDgD5-R4W4mtR4dEQBUTQyxW9yahntEoEnNchS4C7ZGQdLySVXinlZLgmEO_DEtADgmPZl3aQx0ib_NyCFQEzS_uMgr0Mld45C1ZOpBctgbb6Bkn9zs7Yh4_QoAr4TP7wefaUdRy_ePg2A0nQ3c6xlnpuRBcjafBtFm-_Ze5scF3q00yd4k0im2TMokCg5IjVBCiWS7VZOgr0dVm2MynACRc5Sk6NGNQF_CAIYwxj9-iIZ6kOrokTdS1kEO6QFAVuW8"/>
+</div>
+</header>
+<main class="pt-24 pb-32 px-6">
+<!-- Hero Section -->
+<section class="mb-12">
+<h2 class="text-[3.5rem] font-black leading-[1.1] text-on-surface tracking-tighter mb-4 font-headline">Contact Us</h2>
+<p class="text-body-lg text-on-surface-variant leading-relaxed max-w-xs">Our dedicated team is here to support your civic journey. Reach out through our priority channels.</p>
+</section>
+<!-- Quick Action Grid -->
+<section class="grid grid-cols-1 gap-4 mb-12">
+<!-- Call Support -->
+<div class="bg-surface-container-low p-6 rounded-full flex items-center justify-between group active:scale-95 transition-transform duration-200">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-primary flex items-center justify-center text-white">
+<span class="material-symbols-outlined">call</span>
+</div>
+<div>
+<p class="text-xs font-bold uppercase tracking-widest text-on-surface-variant/60">Phone Support</p>
+<p class="text-lg font-bold text-primary font-headline">1800-CIVIC-HELP</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant">chevron_right</span>
+</div>
+<!-- Email Support -->
+<div class="bg-surface-container-low p-6 rounded-full flex items-center justify-between group active:scale-95 transition-transform duration-200">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-tertiary-container flex items-center justify-center text-on-tertiary-container">
+<span class="material-symbols-outlined">mail</span>
+</div>
+<div>
+<p class="text-xs font-bold uppercase tracking-widest text-on-surface-variant/60">Email Inquiries</p>
+<p class="text-lg font-bold text-primary font-headline">support@civicpulse.gov</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant">chevron_right</span>
+</div>
+</section>
+<!-- Form Section -->
+<section class="bg-surface-container-lowest p-8 rounded-[2rem] shadow-sm">
+<div class="mb-8">
+<h3 class="text-2xl font-bold font-headline mb-2">Direct Message</h3>
+<p class="text-on-surface-variant text-sm">Fill in the details below and we will respond within 24 business hours.</p>
+</div>
+<form class="space-y-6">
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase tracking-tighter text-on-surface-variant ml-1">Full Name</label>
+<input class="w-full h-14 px-5 bg-surface-container-highest border-none rounded-xl focus:ring-2 focus:ring-primary focus:bg-white transition-all text-on-surface font-medium" placeholder="Citizen Name" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase tracking-tighter text-on-surface-variant ml-1">Identity Number</label>
+<input class="w-full h-14 px-5 bg-surface-container-highest border-none rounded-xl focus:ring-2 focus:ring-primary focus:bg-white transition-all text-on-surface font-medium" placeholder="Voter ID or Aadhaar" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase tracking-tighter text-on-surface-variant ml-1">Message</label>
+<textarea class="w-full p-5 bg-surface-container-highest border-none rounded-xl focus:ring-2 focus:ring-primary focus:bg-white transition-all text-on-surface font-medium resize-none" placeholder="How can we assist you today?" rows="4"></textarea>
+</div>
+<button class="w-full h-16 bg-secondary-container text-on-secondary-container font-black text-lg rounded-xl flex items-center justify-center gap-3 active:scale-[0.98] transition-all" type="submit">
+                    Submit Inquiry
+                    <span class="material-symbols-outlined">send</span>
+</button>
+</form>
+</section>
+<!-- Help Center Link -->
+<section class="mt-12 text-center">
+<div class="inline-flex items-center gap-2 text-primary font-bold border-b-2 border-primary/20 pb-1">
+<span>Visit Knowledge Base</span>
+<span class="material-symbols-outlined text-sm">open_in_new</span>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full mt-auto py-12 px-6 bg-[#f6f3f2] flex flex-col items-center justify-center text-center space-y-4">
+<div class="bg-[#e5e2e1] h-[1px] w-full mb-8"></div>
+<div class="font-headline font-bold text-[#00376d] text-lg uppercase tracking-widest">Civic Pulse</div>
+<nav class="flex flex-wrap justify-center gap-6">
+<a class="text-[#1b1c1c] opacity-60 text-sm font-medium hover:opacity-100 hover:text-[#00376d] transition-all" href="#">About Us</a>
+<a class="text-[#1b1c1c] opacity-60 text-sm font-medium hover:opacity-100 hover:text-[#00376d] transition-all" href="#">Privacy Policy</a>
+<a class="text-[#00376d] underline text-sm font-medium" href="#">Contact Us</a>
+<a class="text-[#1b1c1c] opacity-60 text-sm font-medium hover:opacity-100 hover:text-[#00376d] transition-all" href="#">Help</a>
+</nav>
+<p class="text-[#1b1c1c] opacity-60 text-xs leading-relaxed max-w-xs mt-4">
+            © 2024 Civic Pulse. An authoritative digital pillar platform dedicated to transparent governance.
+        </p>
+</footer>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full rounded-t-2xl z-50 bg-[#fcf9f8]/90 backdrop-blur-lg shadow-[0_-4px_12px_rgba(0,0,0,0.04)] flex justify-around items-center h-20 pb-safe w-full">
+<button class="flex flex-col items-center justify-center text-[#1b1c1c] opacity-70 hover:opacity-100 transition-opacity active:scale-90 duration-150">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="font-headline text-xs font-semibold mt-1">Dashboard</span>
+</button>
+<button class="flex flex-col items-center justify-center text-[#1b1c1c] opacity-70 hover:opacity-100 transition-opacity active:scale-90 duration-150">
+<span class="material-symbols-outlined">add_box</span>
+<span class="font-headline text-xs font-semibold mt-1">Register</span>
+</button>
+<button class="flex flex-col items-center justify-center text-[#1b1c1c] opacity-70 hover:opacity-100 transition-opacity active:scale-90 duration-150">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="font-headline text-xs font-semibold mt-1">Profile</span>
+</button>
+</nav>
+</body></html>

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Civic Pulse | Citizen Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800;900&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container-low": "#f6f3f2",
+              "surface-container-highest": "#e5e2e1",
+              "inverse-surface": "#303030",
+              "secondary-fixed-dim": "#ffb786",
+              "on-background": "#1b1c1c",
+              "surface-tint": "#175ead",
+              "on-error-container": "#93000a",
+              "background": "#fcf9f8",
+              "on-secondary-container": "#642f00",
+              "surface-container-lowest": "#ffffff",
+              "on-surface-variant": "#41474e",
+              "inverse-on-surface": "#f3f0ef",
+              "secondary-container": "#ff8928",
+              "primary-fixed": "#d5e3ff",
+              "primary": "#00376d",
+              "secondary": "#964900",
+              "on-tertiary-fixed": "#00210c",
+              "surface-container": "#f0eded",
+              "on-tertiary-fixed-variant": "#005227",
+              "on-surface": "#1b1c1c",
+              "tertiary-fixed": "#8afaa7",
+              "on-tertiary-container": "#66d486",
+              "on-error": "#ffffff",
+              "on-tertiary": "#ffffff",
+              "on-secondary": "#ffffff",
+              "surface-container-high": "#eae7e7",
+              "surface-dim": "#dcd9d9",
+              "on-secondary-fixed-variant": "#723600",
+              "secondary-fixed": "#ffdcc6",
+              "primary-container": "#004d96",
+              "on-primary-fixed-variant": "#004689",
+              "surface-variant": "#e5e2e1",
+              "primary-fixed-dim": "#a8c8ff",
+              "on-primary": "#ffffff",
+              "tertiary-fixed-dim": "#6edd8d",
+              "error": "#ba1a1a",
+              "on-primary-container": "#9cc1ff",
+              "error-container": "#ffdad6",
+              "tertiary": "#00401d",
+              "outline-variant": "#c1c7cf",
+              "outline": "#72787f",
+              "on-primary-fixed": "#001b3c",
+              "tertiary-container": "#005a2b",
+              "inverse-primary": "#a8c8ff",
+              "surface-bright": "#fcf9f8",
+              "on-secondary-fixed": "#311300",
+              "surface": "#fcf9f8"
+            },
+            fontFamily: {
+              "headline": ["Public Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bg-glass {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fcf9f8;
+        }
+        h1, h2, h3, .font-headline {
+            font-family: 'Public Sans', sans-serif;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="text-on-surface">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#e5e2e1]/85 backdrop-blur-2xl flex justify-between items-center px-6 h-16 w-full shadow-[0_8px_24px_rgba(27,28,28,0.06)]">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[#00376d]">menu</span>
+<span class="text-xl font-black text-[#00376d] uppercase tracking-tight">Civic Pulse</span>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-white shadow-sm">
+<img alt="User Profile" data-alt="high-quality professional portrait of a smiling citizen in front of a neutral soft-lit office background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLoOxcpbOy7BAYSu6h5TpEBnMOmEzR259bonuK96FUEktD_qrz9yAcFUuT7HBth0e0KuX50mrRaCzV5FaaV3lmIw43cfnktff8paTX0WnEFc6QvCdHQRLoMM7YGWCreJzUZnbvX1BW9oYtntewdT9pVWj79FjPDKzQouqbc_TfSG2DEUv_ENWZOAKaFlHulCayDvRGNPKIsJDUu1W1DsbLBx6PBDyQOYLrRWnG2DbGeZ6KI5p3RexL23O6DCSywvCQvyeYX6KvyYg"/>
+</div>
+</header>
+<main class="pt-24 pb-32 px-6 max-w-lg mx-auto">
+<!-- Hero Section / Welcome -->
+<section class="mb-10">
+<h1 class="text-[2.5rem] font-extrabold text-on-surface leading-tight tracking-tight mb-2">Hello, Arjun</h1>
+<p class="text-on-surface-variant text-lg leading-relaxed">Your active civic contributions and status updates for South Delhi.</p>
+</section>
+<!-- Primary Action: New Request -->
+<section class="mb-12">
+<button class="w-full h-16 bg-primary text-on-primary rounded-xl flex items-center justify-center gap-3 shadow-lg active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add_circle</span>
+<span class="font-headline font-bold text-lg uppercase tracking-wide">New Request</span>
+</button>
+</section>
+<!-- Stats Grid (Bento Lite) -->
+<div class="grid grid-cols-2 gap-4 mb-10">
+<div class="bg-surface-container-low p-5 rounded-2xl flex flex-col justify-between h-32">
+<span class="material-symbols-outlined text-primary text-3xl">pending_actions</span>
+<div>
+<div class="text-2xl font-bold">04</div>
+<div class="text-xs uppercase tracking-wider font-semibold opacity-60">Pending</div>
+</div>
+</div>
+<div class="bg-tertiary-fixed p-5 rounded-2xl flex flex-col justify-between h-32">
+<span class="material-symbols-outlined text-tertiary text-3xl" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<div>
+<div class="text-2xl font-bold text-on-tertiary-fixed">12</div>
+<div class="text-xs uppercase tracking-wider font-semibold opacity-60 text-on-tertiary-fixed">Resolved</div>
+</div>
+</div>
+</div>
+<!-- Active Requests List -->
+<section class="mb-12">
+<div class="flex justify-between items-end mb-6">
+<h2 class="text-2xl font-bold tracking-tight">Active Requests</h2>
+<span class="text-primary font-bold text-sm">View All</span>
+</div>
+<div class="space-y-4">
+<!-- Request Card 1 -->
+<div class="bg-surface-container-lowest p-6 rounded-3xl flex flex-col gap-4 shadow-sm">
+<div class="flex justify-between items-start">
+<div class="flex flex-col">
+<span class="text-xs font-bold uppercase tracking-widest text-primary mb-1">Infrastructure</span>
+<h3 class="text-lg font-bold leading-tight">Pothole Repair - Ring Road</h3>
+</div>
+<div class="bg-secondary-container px-3 py-1 rounded-full flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-on-secondary-container"></span>
+<span class="text-[10px] font-bold text-on-secondary-container uppercase">In Progress</span>
+</div>
+</div>
+<div class="flex items-center gap-4 text-on-surface-variant text-sm">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-base">calendar_today</span>
+<span>24 Oct</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-base">location_on</span>
+<span>New Delhi</span>
+</div>
+</div>
+<div class="w-full bg-surface-container rounded-full h-1.5 overflow-hidden">
+<div class="bg-primary h-full w-[65%]"></div>
+</div>
+</div>
+<!-- Request Card 2 -->
+<div class="bg-surface-container-lowest p-6 rounded-3xl flex flex-col gap-4 shadow-sm">
+<div class="flex justify-between items-start">
+<div class="flex flex-col">
+<span class="text-xs font-bold uppercase tracking-widest text-primary mb-1">Sanitation</span>
+<h3 class="text-lg font-bold leading-tight">Waste Collection Delay</h3>
+</div>
+<div class="bg-surface-container-highest px-3 py-1 rounded-full flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-outline"></span>
+<span class="text-[10px] font-bold text-on-surface-variant uppercase">Submitted</span>
+</div>
+</div>
+<div class="flex items-center gap-4 text-on-surface-variant text-sm">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-base">calendar_today</span>
+<span>Today</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-base">location_on</span>
+<span>Lajpat Nagar</span>
+</div>
+</div>
+</div>
+<!-- Resolved Request Card -->
+<div class="bg-surface-container-lowest p-6 rounded-3xl flex flex-col gap-4 shadow-sm border border-tertiary/20">
+<div class="flex justify-between items-start">
+<div class="flex flex-col">
+<span class="text-xs font-bold uppercase tracking-widest text-primary mb-1">Public Lighting</span>
+<h3 class="text-lg font-bold leading-tight">Street Light Fixed - GK-I</h3>
+</div>
+<div class="bg-tertiary-fixed px-3 py-1 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px] text-on-tertiary-fixed" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="text-[10px] font-bold text-on-tertiary-fixed uppercase">Resolved</span>
+</div>
+</div>
+<div class="flex items-center gap-4 text-on-surface-variant text-sm">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-base">calendar_today</span>
+<span>22 Oct</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-base">location_on</span>
+<span>Greater Kailash</span>
+</div>
+</div>
+<button class="mt-2 w-full py-3 px-4 bg-primary text-white font-headline font-bold text-sm uppercase tracking-wider rounded-lg flex items-center justify-center gap-2 hover:bg-primary/90 transition-colors">
+<span class="material-symbols-outlined text-sm">rate_review</span>
+    Give Feedback
+  </button>
+</div></div>
+</section>
+<!-- Community Highlights (Asymmetric Layout) -->
+<section class="mb-12">
+<h2 class="text-2xl font-bold tracking-tight mb-6">Neighborhood Pulse</h2>
+<div class="relative overflow-hidden rounded-3xl aspect-[4/3] mb-4">
+<img alt="Community Park" class="w-full h-full object-cover" data-alt="A beautiful modern urban park in India with clean pathways, green trees, and families walking at sunset in soft warm lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuGZ6Sjuo3WcBxybueZ95kFJJ4nLepVaMhJV_40hUgJuxjwD4d2dTyC4IRvNn8FBJW4FVt7v2JVSyAn-osRFE4XIfktsE1gr3rSGhUDLxe-AU1Klm7ol_IplWNBSnp2CbZNgZJ0PMpPDWrgyxRzgp5IQ4TzdedIQMarz5LaIabbCam-7N7BYpc8wok6BZxhGnFtL3eFO3gHhV-8qty2PehQIWb6AqSHx6XfLbbJx7Mu3q41pxEmg6Y1pyfjCX7FmfnX1sr7ZtuK1Q"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-6">
+<span class="text-tertiary-fixed text-xs font-bold uppercase tracking-widest mb-2">Success Story</span>
+<h3 class="text-white text-xl font-bold">GK-II Park Renovation Complete</h3>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="w-full py-12 px-6 flex flex-col items-center justify-center text-center space-y-4 bg-[#f6f3f2]">
+<div class="bg-[#e5e2e1] h-[1px] w-full mb-8"></div>
+<div class="font-['Public_Sans'] font-bold text-[#00376d] text-xl">Civic Pulse</div>
+<div class="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-4">
+<span class="text-[#1b1c1c] opacity-60 text-sm font-body">About Us</span>
+<span class="text-[#1b1c1c] opacity-60 text-sm font-body underline">Privacy Policy</span>
+<span class="text-[#1b1c1c] opacity-60 text-sm font-body">Contact Us</span>
+<span class="text-[#1b1c1c] opacity-60 text-sm font-body">Help</span>
+</div>
+<p class="font-['Inter'] text-sm leading-relaxed text-[#1b1c1c] opacity-60">© 2024 Civic Pulse. An authoritative digital pillar platform.</p>
+</footer>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full rounded-t-2xl z-50 bg-[#fcf9f8]/90 backdrop-blur-lg shadow-[0_-4px_12px_rgba(0,0,0,0.04)] flex justify-around items-center h-20 pb-safe">
+<div class="flex flex-col items-center justify-center bg-[#00376d] text-white rounded-xl px-4 py-1 active:scale-90 duration-150 cursor-pointer">
+<span class="material-symbols-outlined" data-icon="grid_view" style="font-variation-settings: 'FILL' 1;">grid_view</span>
+<span class="font-['Public_Sans'] text-xs font-semibold">Dashboard</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#1b1c1c] opacity-70 hover:opacity-100 transition-opacity active:scale-90 duration-150 cursor-pointer">
+<span class="material-symbols-outlined" data-icon="add_box">add_box</span>
+<span class="font-['Public_Sans'] text-xs font-semibold">Register</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#1b1c1c] opacity-70 hover:opacity-100 transition-opacity active:scale-90 duration-150 cursor-pointer">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+<span class="font-['Public_Sans'] text-xs font-semibold">Profile</span>
+</div>
+</nav>
+</body></html>

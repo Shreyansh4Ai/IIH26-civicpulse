@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Civic Pulse | Officer Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700;800;900&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-error": "#ffffff",
+              "outline-variant": "#c1c7cf",
+              "on-surface": "#1b1c1c",
+              "on-surface-variant": "#41474e",
+              "tertiary-fixed": "#8afaa7",
+              "surface-container": "#f0eded",
+              "secondary-fixed": "#ffdcc6",
+              "primary": "#00376d",
+              "on-secondary-container": "#642f00",
+              "surface-variant": "#e5e2e1",
+              "on-secondary-fixed": "#311300",
+              "error": "#ba1a1a",
+              "surface-container-lowest": "#ffffff",
+              "on-background": "#1b1c1c",
+              "on-primary-fixed-variant": "#004689",
+              "on-primary": "#ffffff",
+              "on-primary-fixed": "#001b3c",
+              "tertiary": "#00401d",
+              "secondary-fixed-dim": "#ffb786",
+              "on-primary-container": "#9cc1ff",
+              "inverse-on-surface": "#f3f0ef",
+              "tertiary-fixed-dim": "#6edd8d",
+              "surface-bright": "#fcf9f8",
+              "surface-container-high": "#eae7e7",
+              "surface-dim": "#dcd9d9",
+              "error-container": "#ffdad6",
+              "inverse-primary": "#a8c8ff",
+              "outline": "#72787f",
+              "on-tertiary-container": "#66d486",
+              "on-tertiary": "#ffffff",
+              "inverse-surface": "#303030",
+              "tertiary-container": "#005a2b",
+              "secondary-container": "#ff8928",
+              "on-secondary": "#ffffff",
+              "surface-container-highest": "#e5e2e1",
+              "background": "#fcf9f8",
+              "secondary": "#964900",
+              "surface-container-low": "#f6f3f2",
+              "surface": "#fcf9f8",
+              "primary-fixed-dim": "#a8c8ff",
+              "on-tertiary-fixed-variant": "#005227",
+              "primary-container": "#004d96",
+              "surface-tint": "#175ead",
+              "on-tertiary-fixed": "#00210c",
+              "on-secondary-fixed-variant": "#723600",
+              "on-error-container": "#93000a",
+              "primary-fixed": "#d5e3ff"
+            },
+            fontFamily: {
+              "headline": ["Public Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      body {
+        background-color: #fcf9f8;
+        color: #1b1c1c;
+      }
+    </style>
+</head>
+<body class="font-body selection:bg-secondary-fixed selection:text-on-secondary-fixed overflow-x-hidden">
+<!-- Sidebar Navigation Shell -->
+<aside class="fixed left-0 top-0 h-full flex flex-col py-6 space-y-2 bg-[#f6f3f2] dark:bg-slate-950 h-screen w-64 border-r-0 z-40">
+<div class="px-6 mb-8">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">account_balance</span>
+</div>
+<div>
+<h1 class="text-xl font-bold text-[#1b1c1c] font-headline leading-tight">Officer Portal</h1>
+<p class="text-[10px] uppercase tracking-widest text-on-surface-variant font-semibold">District Governance</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 px-0">
+<div class="space-y-1">
+<a class="flex items-center gap-3 px-6 py-3 bg-[#00376d] text-white rounded-r-full mr-4 transition-transform hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-['Public_Sans'] text-sm font-semibold">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-[#1b1c1c] hover:bg-[#e5e2e1] rounded-r-full mr-4 transition-transform hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">assignment_late</span>
+<span class="font-['Public_Sans'] text-sm font-semibold">Complaints</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-[#1b1c1c] hover:bg-[#e5e2e1] rounded-r-full mr-4 transition-transform hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">monitoring</span>
+<span class="font-['Public_Sans'] text-sm font-semibold">Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-[#1b1c1c] hover:bg-[#e5e2e1] rounded-r-full mr-4 transition-transform hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">admin_panel_settings</span>
+<span class="font-['Public_Sans'] text-sm font-semibold">Access Control</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-[#1b1c1c] hover:bg-[#e5e2e1] rounded-r-full mr-4 transition-transform hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-['Public_Sans'] text-sm font-semibold">Archive</span>
+</a>
+</div>
+</nav>
+<div class="px-6 py-4">
+<button class="w-full bg-secondary-container text-on-secondary-container font-bold py-4 rounded-xl flex items-center justify-center gap-2 hover:opacity-90 transition-all shadow-sm">
+<span class="material-symbols-outlined">add_task</span>
+<span>New Dispatch</span>
+</button>
+</div>
+<div class="px-2 space-y-1">
+<a class="flex items-center gap-3 px-6 py-3 text-[#1b1c1c] hover:bg-[#e5e2e1] rounded-r-full mr-4 transition-transform hover:translate-x-1" href="{{DATA:SCREEN:SCREEN_20}}">
+<span class="material-symbols-outlined">help</span>
+<span class="font-['Public_Sans'] text-sm font-semibold">Help Center</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-error hover:bg-error-container/20 rounded-r-full mr-4 transition-transform hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-['Public_Sans'] text-sm font-semibold">Logout</span>
+</a>
+</div>
+</aside>
+<main class="ml-64 min-h-screen">
+<!-- Top App Bar -->
+<header class="flex justify-between items-center w-full px-8 py-4 sticky top-0 z-50 backdrop-blur-md bg-white/85">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-black text-[#00376d] font-headline tracking-tight">Civic Pulse</span>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-[#1b1c1c] opacity-70 hover:opacity-100 transition-opacity font-['Public_Sans'] font-bold tracking-tight" href="{{DATA:SCREEN:SCREEN_6}}">About Us</a>
+<a class="text-[#1b1c1c] opacity-70 hover:opacity-100 transition-opacity font-['Public_Sans'] font-bold tracking-tight" href="{{DATA:SCREEN:SCREEN_2}}">Contact Us</a>
+<a class="text-[#1b1c1c] opacity-70 hover:opacity-100 transition-opacity font-['Public_Sans'] font-bold tracking-tight" href="#">Dashboard</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center bg-surface-container-low rounded-full px-1 py-1">
+<button class="px-4 py-1.5 bg-primary text-on-primary rounded-full text-sm font-bold">English</button>
+<button class="px-4 py-1.5 text-on-surface-variant text-sm font-bold">हिंदी</button>
+</div>
+<div class="flex items-center gap-2 ml-4">
+<button class="p-2 text-on-surface-variant hover:bg-[#f6f3f2] rounded-full transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-[#f6f3f2] rounded-full transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="ml-2 w-10 h-10 rounded-full bg-surface-container-highest overflow-hidden border-2 border-white shadow-sm">
+<img alt="Officer Profile" class="w-full h-full object-cover" data-alt="Close up portrait of a professional officer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3ovnIMGLootfklUGmllKwtG8y4BtVZItE33WPiTkKALCHipl4QUytpoGluw3iQaOfdFCEFI1wdoItuauzUzeqAHZRKebRgpWpyHcocMsH0JWXz-cS9t2JjZBIPKUAq7bHGoPfvyIz_usjmL3_cA_v2qT4u-z9HPSpqWN9wkKZBP9BUYYhCUgCgpE56yZUA01TKjqjCsaPPioRpKj7qpXRl9hIQbMUCB1Jv6y13pwxKh2OmDRwhG7D8yOpdUwMir4rBbO-occD_w"/>
+</div>
+</div>
+</div>
+</header>
+<div class="p-8 max-w-7xl mx-auto">
+<!-- Hero / Greeting -->
+<section class="mb-12">
+<h2 class="text-[3.5rem] leading-[1.1] font-black text-on-surface font-headline -tracking-[0.03em] mb-2">
+                    Welcome, Officer. <br/>
+<span class="text-primary/60">अधिकारी महोदय, स्वागत है।</span>
+</h2>
+<p class="text-on-surface-variant text-lg max-w-2xl mt-4 font-body leading-relaxed">
+                    Overview of the district's current infrastructure and citizen health reports. Actions required for 12 pending escalations.
+                </p>
+</section>
+<!-- Metrics Bento Grid -->
+<section class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
+<div class="bg-surface-container-lowest p-8 rounded-xl flex flex-col justify-between min-h-[160px] border-b-4 border-primary/20">
+<div>
+<p class="text-sm font-bold text-primary uppercase tracking-widest mb-1">Total Complaints</p>
+<p class="text-xs text-on-surface-variant font-medium">कुल शिकायतें</p>
+</div>
+<p class="text-5xl font-black text-on-surface mt-4">1,284</p>
+</div>
+<div class="bg-surface-container-lowest p-8 rounded-xl flex flex-col justify-between min-h-[160px] border-b-4 border-error/20">
+<div>
+<p class="text-sm font-bold text-error uppercase tracking-widest mb-1">Pending Review</p>
+<p class="text-xs text-on-surface-variant font-medium">समीक्षा लंबित</p>
+</div>
+<p class="text-5xl font-black text-on-surface mt-4">42</p>
+</div>
+<div class="bg-surface-container-lowest p-8 rounded-xl flex flex-col justify-between min-h-[160px] border-b-4 border-tertiary/20">
+<div>
+<p class="text-sm font-bold text-tertiary uppercase tracking-widest mb-1">Resolved</p>
+<p class="text-xs text-on-surface-variant font-medium">समाधान किया गया</p>
+</div>
+<p class="text-5xl font-black text-on-surface mt-4">912</p>
+</div>
+<div class="bg-surface-container-lowest p-8 rounded-xl flex flex-col justify-between min-h-[160px] border-b-4 border-secondary/20">
+<div>
+<p class="text-sm font-bold text-secondary uppercase tracking-widest mb-1">Avg. Resolution</p>
+<p class="text-xs text-on-surface-variant font-medium">औसत समाधान समय</p>
+</div>
+<p class="text-5xl font-black text-on-surface mt-4">3.4d</p>
+</div>
+</section>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Complaint Queue -->
+<div class="lg:col-span-2 space-y-6">
+<div class="flex items-end justify-between">
+<div>
+<h3 class="text-2xl font-black text-on-surface font-headline uppercase tracking-tight">Active Queue</h3>
+<p class="text-on-surface-variant text-sm font-medium">सक्रिय कतार - Real-time submissions</p>
+</div>
+<button class="text-primary font-bold text-sm flex items-center gap-1 hover:underline">
+                            View All <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low border-b border-surface-container-highest">
+<tr>
+<th class="px-6 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-wider">Complaint / शिकायत</th>
+<th class="px-6 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-wider">Priority / प्राथमिकता</th>
+<th class="px-6 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-wider">Area / क्षेत्र</th>
+<th class="px-6 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-wider">Status / स्थिति</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-low">
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="px-6 py-6">
+<div class="font-bold text-on-surface">Main Road Pothole</div>
+<div class="text-xs text-on-surface-variant mt-0.5">Civil Infrastructure</div>
+</td>
+<td class="px-6 py-6">
+<span class="px-3 py-1 bg-error-container text-on-error-container text-[10px] font-black uppercase rounded-full">High</span>
+</td>
+<td class="px-6 py-6 text-sm text-on-surface">Sector 12-B</td>
+<td class="px-6 py-6">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+<span class="text-sm font-bold text-on-surface">In Progress</span>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="px-6 py-6">
+<div class="font-bold text-on-surface">Street Light Failure</div>
+<div class="text-xs text-on-surface-variant mt-0.5">Electricity</div>
+</td>
+<td class="px-6 py-6">
+<span class="px-3 py-1 bg-surface-container-highest text-on-surface-variant text-[10px] font-black uppercase rounded-full">Medium</span>
+</td>
+<td class="px-6 py-6 text-sm text-on-surface">Park Avenue</td>
+<td class="px-6 py-6">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-outline-variant"></span>
+<span class="text-sm font-bold text-on-surface">New Submission</span>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="px-6 py-6">
+<div class="font-bold text-on-surface">Garbage Accumulation</div>
+<div class="text-xs text-on-surface-variant mt-0.5">Sanitation</div>
+</td>
+<td class="px-6 py-6">
+<span class="px-3 py-1 bg-tertiary-fixed text-on-tertiary-fixed-variant text-[10px] font-black uppercase rounded-full">Low</span>
+</td>
+<td class="px-6 py-6 text-sm text-on-surface">Green Valley</td>
+<td class="px-6 py-6">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span class="text-sm font-bold text-on-surface">Resolved</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Analytics & Quick Actions -->
+<div class="space-y-8">
+<!-- Analytics -->
+<div class="bg-surface-container-low p-8 rounded-xl">
+<h3 class="text-lg font-black text-on-surface font-headline uppercase mb-1">Category Insights</h3>
+<p class="text-xs text-on-surface-variant font-medium mb-8">श्रेणी अंतर्दृष्टि</p>
+<div class="space-y-6">
+<div>
+<div class="flex justify-between text-xs font-bold mb-2 uppercase tracking-wide">
+<span>Potholes (40%)</span>
+<span class="text-primary">512 Cases</span>
+</div>
+<div class="w-full bg-surface-container-highest h-3 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[40%]"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-xs font-bold mb-2 uppercase tracking-wide">
+<span>Sewage (30%)</span>
+<span class="text-primary">385 Cases</span>
+</div>
+<div class="w-full bg-surface-container-highest h-3 rounded-full overflow-hidden">
+<div class="bg-primary-container h-full w-[30%]"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-xs font-bold mb-2 uppercase tracking-wide">
+<span>Electricity (20%)</span>
+<span class="text-primary">256 Cases</span>
+</div>
+<div class="w-full bg-surface-container-highest h-3 rounded-full overflow-hidden">
+<div class="bg-outline-variant h-full w-[20%]"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-xs font-bold mb-2 uppercase tracking-wide">
+<span>Others (10%)</span>
+<span class="text-primary">131 Cases</span>
+</div>
+<div class="w-full bg-surface-container-highest h-3 rounded-full overflow-hidden">
+<div class="bg-surface-dim h-full w-[10%]"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Quick Actions -->
+<div class="space-y-4">
+<h3 class="text-lg font-black text-on-surface font-headline uppercase">Critical Actions</h3>
+<button class="w-full group bg-surface-container-lowest hover:bg-primary hover:text-white p-5 rounded-xl transition-all flex items-center justify-between border-l-4 border-primary shadow-sm">
+<div class="text-left">
+<p class="font-bold text-sm uppercase">Generate Report</p>
+<p class="text-[10px] opacity-70">रिपोर्ट तैयार करें</p>
+</div>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">description</span>
+</button>
+<button class="w-full group bg-surface-container-lowest hover:bg-secondary hover:text-white p-5 rounded-xl transition-all flex items-center justify-between border-l-4 border-secondary shadow-sm">
+<div class="text-left">
+<p class="font-bold text-sm uppercase">Dispatch Field Team</p>
+<p class="text-[10px] opacity-70">फील्ड टीम भेजें</p>
+</div>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">engineering</span>
+</button>
+<button class="w-full group bg-error-container hover:bg-error hover:text-white p-5 rounded-xl transition-all flex items-center justify-between border-l-4 border-error shadow-sm">
+<div class="text-left text-on-error-container group-hover:text-white">
+<p class="font-bold text-sm uppercase">Emergency Alert</p>
+<p class="text-[10px] opacity-70">आपातकालीन अलर्ट</p>
+</div>
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">emergency_home</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Map Contextual Section (Bento Style) -->
+<section class="ml-64 p-8 pt-0 max-w-7xl mx-auto mb-12">
+<div class="relative w-full h-80 rounded-2xl overflow-hidden shadow-sm">
+<div class="absolute inset-0 bg-cover bg-center grayscale opacity-20" data-alt="Stylized city map background" data-location="New Delhi" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAqrIzlF4VtMq2vWViROzVEu4pJ0OfhbyhWhwlxsbrFF4OFqB0x8CwwYvDudLWmgKUtKQhLTdn96AcbXcTIDv6qlLxAy-QR7JETuopky5N072gAOcg86bOrp9RB8gCIdjj0nN5EN4DMQbmUKvXYLvfTyghUKjfY03srPjjvZgko5h6T00JchWjxTIZZAJfOvzAezYo5YQ0M7XeFD-0IVlGrLKd4dOEq__nWzQZb1oxhNz2MErHSijoM8c1iFHz7bJliRqPbUIaZuQ')"></div>
+<div class="absolute inset-0 bg-gradient-to-tr from-primary/90 to-transparent"></div>
+<div class="absolute inset-0 flex items-center p-12">
+<div class="max-w-md text-white">
+<span class="px-3 py-1 bg-secondary text-on-secondary text-[10px] font-black uppercase rounded mb-4 inline-block">Live Insight</span>
+<h4 class="text-3xl font-black font-headline leading-tight mb-4">District Connectivity Hotspots</h4>
+<p class="text-sm opacity-80 mb-6 font-medium leading-relaxed">Most reported issues are concentrated in the industrial corridor. Predictive analytics suggests infrastructure fatigue in North-East sectors.</p>
+<button class="px-6 py-3 bg-white text-primary font-bold text-sm rounded hover:bg-secondary-fixed transition-colors">
+                        Launch GIS View
+                    </button>
+</div>
+</div>
+</div>
+</section><footer class="ml-64 bg-surface-container-low border-t border-outline-variant/20 py-12 px-8">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-8">
+<div class="max-w-md">
+<div class="font-bold text-primary text-2xl mb-4 font-headline">Civic Pulse</div>
+<p class="text-on-surface-variant text-sm leading-relaxed">
+        Empowering citizens through digital transparency and efficient governance. A unified portal for all district administrative needs.
+      </p>
+</div>
+<div class="grid grid-cols-2 gap-12">
+<div>
+<h4 class="font-bold mb-4 text-primary uppercase text-xs tracking-widest">Quick Links</h4>
+<div class="flex flex-col gap-2">
+<a class="text-on-surface-variant hover:text-primary transition-colors text-sm" href="{{DATA:SCREEN:SCREEN_6}}">About Us</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-sm" href="{{DATA:SCREEN:SCREEN_22}}">Privacy Policy</a>
+</div>
+</div>
+<div>
+<h4 class="font-bold mb-4 text-primary uppercase text-xs tracking-widest">Support</h4>
+<div class="flex flex-col gap-2">
+<a class="text-on-surface-variant hover:text-primary transition-colors text-sm" href="{{DATA:SCREEN:SCREEN_2}}">Contact Us</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-sm" href="{{DATA:SCREEN:SCREEN_20}}">Help Desk</a>
+</div>
+</div>
+</div>
+</div>
+<div class="max-w-7xl mx-auto mt-12 pt-8 border-t border-outline-variant/10">
+<p class="text-outline text-xs">© 2024 Civic Pulse. Official Officer Portal - District Governance Initiative.</p>
+</div>
+</footer>
+</body></html>

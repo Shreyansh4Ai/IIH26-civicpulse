@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;700;800;900&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "error-container": "#ffdad6",
+              "surface": "#fcf9f8",
+              "primary-fixed-dim": "#a8c8ff",
+              "on-secondary": "#ffffff",
+              "inverse-on-surface": "#f3f0ef",
+              "outline": "#72787f",
+              "surface-tint": "#175ead",
+              "primary": "#00376d",
+              "tertiary-container": "#005a2b",
+              "surface-variant": "#e5e2e1",
+              "surface-container-highest": "#e5e2e1",
+              "surface-container-high": "#eae7e7",
+              "on-secondary-fixed": "#311300",
+              "on-primary-fixed": "#001b3c",
+              "on-surface": "#1b1c1c",
+              "primary-fixed": "#d5e3ff",
+              "on-primary": "#ffffff",
+              "surface-container-lowest": "#ffffff",
+              "surface-container": "#f0eded",
+              "tertiary": "#00401d",
+              "on-tertiary-fixed": "#00210c",
+              "secondary-fixed": "#ffdcc6",
+              "on-primary-fixed-variant": "#004689",
+              "secondary": "#964900",
+              "on-tertiary": "#ffffff",
+              "on-secondary-container": "#642f00",
+              "on-error-container": "#93000a",
+              "surface-container-low": "#f6f3f2",
+              "outline-variant": "#c1c7cf",
+              "on-tertiary-fixed-variant": "#005227",
+              "inverse-primary": "#a8c8ff",
+              "secondary-fixed-dim": "#ffb786",
+              "secondary-container": "#ff8928",
+              "on-error": "#ffffff",
+              "surface-dim": "#dcd9d9",
+              "on-primary-container": "#9cc1ff",
+              "on-surface-variant": "#41474e",
+              "on-secondary-fixed-variant": "#723600",
+              "on-background": "#1b1c1c",
+              "inverse-surface": "#303030",
+              "on-tertiary-container": "#66d486",
+              "tertiary-fixed": "#8afaa7",
+              "surface-bright": "#fcf9f8",
+              "tertiary-fixed-dim": "#6edd8d",
+              "background": "#fcf9f8",
+              "primary-container": "#004d96",
+              "error": "#ba1a1a"
+            },
+            fontFamily: {
+              "headline": ["Public Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bg-glass {
+            backdrop-filter: blur(20px);
+            background-color: rgba(255, 255, 255, 0.85);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface">
+<!-- TopAppBar -->
+<header class="bg-[#fcf9f8] dark:bg-slate-950/85 backdrop-blur-md docked full-width top-0 sticky z-50">
+<div class="bg-[#e5e2e1] h-px w-full opacity-20"></div>
+<div class="flex justify-between items-center w-full px-8 py-4 max-w-screen-2xl mx-auto">
+<div class="text-2xl font-black text-[#00376d] dark:text-blue-500 font-headline">
+                Civic Pulse | नागरिक पल्स
+            </div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-slate-600 dark:text-slate-400 hover:text-[#00376d] transition-colors font-public-sans font-bold headline-lg tracking-tight" href="#">Home</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-[#00376d] transition-colors font-public-sans font-bold headline-lg tracking-tight" href="#">Services</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-[#00376d] transition-colors font-public-sans font-bold headline-lg tracking-tight" href="#">My Complaints</a>
+<a class="text-[#00376d] dark:text-blue-400 border-b-2 border-[#00376d] pb-1 font-public-sans font-bold headline-lg tracking-tight" href="#">Help</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="bg-surface-container-low px-4 py-2 rounded-full text-[#00376d] font-bold text-sm">
+                    English/हिंदी
+                </button>
+</div>
+</div>
+</header>
+<main class="max-w-screen-2xl mx-auto px-8">
+<!-- Hero Search Section -->
+<section class="py-20 flex flex-col items-center text-center">
+<h1 class="text-6xl font-black text-on-surface mb-4 tracking-tighter leading-none">
+                How can we help? <br/>
+<span class="text-primary">हम आपकी क्या मदद कर सकते हैं?</span>
+</h1>
+<p class="text-xl text-on-surface-variant max-w-2xl mb-12">
+                Search our knowledge base for guides, FAQs, and technical support.
+            </p>
+<div class="w-full max-w-3xl relative group">
+<div class="absolute inset-y-0 left-6 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline">search</span>
+</div>
+<input class="w-full h-20 pl-16 pr-8 bg-surface-container-highest border-none rounded-xl focus:ring-2 focus:ring-primary focus:bg-white text-lg transition-all shadow-sm" placeholder="Search for issues, services or tracking... / समस्याओं, सेवाओं या ट्रैकिंग के लिए खोजें..." type="text"/>
+</div>
+</section>
+<!-- FAQ Categories Bento -->
+<section class="mb-20">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+<!-- Getting Started -->
+<div class="md:col-span-2 bg-surface-container-lowest p-10 rounded-xl hover:bg-surface-container transition-colors cursor-pointer group">
+<div class="w-14 h-14 bg-primary-fixed rounded-xl flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-primary text-3xl">rocket_launch</span>
+</div>
+<h3 class="text-2xl font-bold mb-2">Getting Started</h3>
+<h4 class="text-primary font-bold mb-4">शुरू करना</h4>
+<p class="text-on-surface-variant mb-6">Learn how to create an account and navigate the Civic Pulse portal.</p>
+<span class="text-primary font-bold flex items-center gap-2 group-hover:translate-x-2 transition-transform">
+                        Explore Topics <span class="material-symbols-outlined">arrow_forward</span>
+</span>
+</div>
+<!-- Aadhaar Verification -->
+<div class="bg-surface-container-low p-10 rounded-xl hover:bg-surface-container transition-colors cursor-pointer">
+<div class="w-14 h-14 bg-tertiary-fixed rounded-xl flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-tertiary text-3xl">fingerprint</span>
+</div>
+<h3 class="text-xl font-bold mb-1">Aadhaar Verification</h3>
+<h4 class="text-tertiary font-bold mb-4">आधार सत्यापन</h4>
+<p class="text-sm text-on-surface-variant">Step-by-step guide to linking your Aadhaar for secure services.</p>
+</div>
+<!-- Tracking Complaints -->
+<div class="bg-surface-container-low p-10 rounded-xl hover:bg-surface-container transition-colors cursor-pointer">
+<div class="w-14 h-14 bg-secondary-fixed rounded-xl flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-secondary text-3xl">analytics</span>
+</div>
+<h3 class="text-xl font-bold mb-1">Tracking Status</h3>
+<h4 class="text-secondary font-bold mb-4">ट्रैकिंग स्थिति</h4>
+<p class="text-sm text-on-surface-variant">How to check the real-time status of your submitted requests.</p>
+</div>
+<!-- Technical Support -->
+<div class="md:col-span-4 bg-primary text-white p-10 rounded-xl flex flex-col md:flex-row items-center justify-between gap-8">
+<div class="flex items-center gap-6">
+<div class="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-md">
+<span class="material-symbols-outlined text-white text-4xl">support_agent</span>
+</div>
+<div>
+<h3 class="text-2xl font-bold">Technical Support / तकनीकी सहायता</h3>
+<p class="text-primary-fixed-dim">Issues with login, geotagging, or document uploads?</p>
+</div>
+</div>
+<button class="bg-secondary-container text-on-secondary-container px-8 h-14 rounded-md font-bold text-lg hover:opacity-90 transition-opacity">
+                        Chat with Support
+                    </button>
+</div>
+</div>
+</section>
+<!-- Detailed FAQs -->
+<section class="max-w-4xl mx-auto mb-20">
+<div class="flex flex-col items-center mb-16">
+<h2 class="text-4xl font-black mb-2">Frequently Asked Questions</h2>
+<h3 class="text-2xl font-bold text-primary">अक्सर पूछे जाने वाले प्रश्न</h3>
+</div>
+<div class="space-y-4">
+<!-- FAQ Item 1 -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden">
+<div class="p-8 flex justify-between items-center cursor-pointer border-b border-outline-variant/20">
+<div>
+<p class="text-xl font-bold">How to register a complaint? / शिकायत कैसे दर्ज करें?</p>
+</div>
+<span class="material-symbols-outlined text-primary">expand_more</span>
+</div>
+<div class="p-8 bg-white/50">
+<p class="text-lg leading-relaxed text-on-surface-variant mb-4">
+                            To register a complaint, navigate to the 'Services' tab and select the relevant department. Fill in the required details, upload evidence (if any), and use the geotagging tool to mark the location.
+                        </p>
+<p class="text-lg leading-relaxed text-on-surface-variant">
+                            शिकायत दर्ज करने के लिए, 'सेवाएं' टैब पर जाएं और संबंधित विभाग का चयन करें। विवरण भरें, प्रमाण अपलोड करें और स्थान चिह्नित करने के लिए जियोटैगिंग टूल का उपयोग करें।
+                        </p>
+</div>
+</div>
+<!-- FAQ Item 2 -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden">
+<div class="p-8 flex justify-between items-center cursor-pointer">
+<div>
+<p class="text-xl font-bold">Is my data secure? / क्या मेरा डेटा सुरक्षित है?</p>
+</div>
+<span class="material-symbols-outlined text-primary">expand_more</span>
+</div>
+</div>
+<!-- FAQ Item 3 -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden">
+<div class="p-8 flex justify-between items-center cursor-pointer">
+<div>
+<p class="text-xl font-bold">What is geotagging? / जियोटैगिंग क्या है?</p>
+</div>
+<span class="material-symbols-outlined text-primary">expand_more</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Still Need Help -->
+<section class="bg-surface-container-low rounded-3xl p-16 flex flex-col items-center text-center">
+<h2 class="text-4xl font-black mb-4">Still need help? / अब भी मदद चाहिए?</h2>
+<p class="text-xl text-on-surface-variant mb-10 max-w-xl">
+                Our support team is available 24/7 to assist you with any portal-related queries.
+            </p>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="flex items-center gap-3 bg-white px-8 py-4 rounded-xl shadow-sm border border-outline-variant/20 hover:bg-primary hover:text-white transition-all group" href="#">
+<span class="material-symbols-outlined group-hover:text-white text-primary">mail</span>
+<span class="font-bold">Contact Us Page</span>
+</a>
+<a class="flex items-center gap-3 bg-white px-8 py-4 rounded-xl shadow-sm border border-outline-variant/20 hover:bg-primary hover:text-white transition-all group" href="#">
+<span class="material-symbols-outlined group-hover:text-white text-primary">call</span>
+<span class="font-bold">1800-123-4567</span>
+</a>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#f6f3f2] dark:bg-slate-950 w-full py-12 px-8 mt-20">
+<div class="max-w-screen-2xl mx-auto flex flex-col md:flex-row justify-between items-start gap-8">
+<div class="max-w-md">
+<div class="font-bold text-[#00376d] text-2xl mb-4 font-headline">Civic Pulse</div>
+<p class="body-lg font-public-sans leading-relaxed text-slate-700 dark:text-slate-300">
+                    Empowering citizens through digital transparency and efficient governance. A unified portal for all your civic needs.
+                </p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-2 gap-12">
+<div>
+<h4 class="font-bold mb-4 text-[#00376d]">Quick Links</h4>
+<div class="flex flex-col gap-2">
+<a class="text-slate-600 dark:text-slate-400 hover:text-[#ff8928] transition-colors" href="#">Privacy Policy</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-[#ff8928] transition-colors" href="#">Terms of Service</a>
+</div>
+</div>
+<div>
+<h4 class="font-bold mb-4 text-[#00376d]">Support</h4>
+<div class="flex flex-col gap-2">
+<a class="text-slate-600 dark:text-slate-400 hover:text-[#ff8928] transition-colors" href="#">Accessibility</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-[#ff8928] transition-colors" href="#">Contact Us</a>
+</div>
+</div>
+</div>
+</div>
+<div class="max-w-screen-2xl mx-auto mt-12 pt-8 border-t border-outline-variant/20">
+<p class="text-slate-500 text-sm">© 2024 Civic Pulse. Government of India.</p>
+</div>
+</footer>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-4 pt-2 bg-[#ffffff] dark:bg-slate-900 border-t border-[#c1c7cf]/20 shadow-[0_-4px_12px_rgba(0,0,0,0.06)] z-50 rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 px-4 py-2 hover:text-[#00376d] transition-transform duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-xs font-semibold font-public-sans">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 px-4 py-2 hover:text-[#00376d] transition-transform duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="text-xs font-semibold font-public-sans">Track</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-[#00376d] text-white rounded-xl px-6 py-2 transition-transform duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">help_center</span>
+<span class="text-xs font-semibold font-public-sans">Help</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 px-4 py-2 hover:text-[#00376d] transition-transform duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-xs font-semibold font-public-sans">Profile</span>
+</a>
+</nav>
+</body></html>

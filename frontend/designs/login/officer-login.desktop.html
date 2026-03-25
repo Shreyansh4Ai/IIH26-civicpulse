@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Civic Pulse | Officer Login</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;700;800;900&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "surface-bright": "#fcf9f8",
+                "surface-container-high": "#eae7e7",
+                "surface-dim": "#dcd9d9",
+                "tertiary-fixed-dim": "#6edd8d",
+                "tertiary": "#00401d",
+                "secondary-fixed-dim": "#ffb786",
+                "on-primary-container": "#9cc1ff",
+                "inverse-on-surface": "#f3f0ef",
+                "on-primary-fixed-variant": "#004689",
+                "on-primary": "#ffffff",
+                "on-primary-fixed": "#001b3c",
+                "surface-variant": "#e5e2e1",
+                "on-secondary-fixed": "#311300",
+                "error": "#ba1a1a",
+                "surface-container-lowest": "#ffffff",
+                "on-background": "#1b1c1c",
+                "tertiary-fixed": "#8afaa7",
+                "surface-container": "#f0eded",
+                "secondary-fixed": "#ffdcc6",
+                "primary": "#00376d",
+                "on-secondary-container": "#642f00",
+                "outline-variant": "#c1c7cf",
+                "on-surface": "#1b1c1c",
+                "on-surface-variant": "#41474e",
+                "on-error": "#ffffff",
+                "on-secondary-fixed-variant": "#723600",
+                "on-error-container": "#93000a",
+                "primary-fixed": "#d5e3ff",
+                "on-tertiary-fixed-variant": "#005227",
+                "primary-container": "#004d96",
+                "surface-tint": "#175ead",
+                "on-tertiary-fixed": "#00210c",
+                "surface-container-low": "#f6f3f2",
+                "surface": "#fcf9f8",
+                "primary-fixed-dim": "#a8c8ff",
+                "secondary": "#964900",
+                "surface-container-highest": "#e5e2e1",
+                "background": "#fcf9f8",
+                "inverse-surface": "#303030",
+                "tertiary-container": "#005a2b",
+                "secondary-container": "#ff8928",
+                "on-secondary": "#ffffff",
+                "error-container": "#ffdad6",
+                "inverse-primary": "#a8c8ff",
+                "outline": "#72787f",
+                "on-tertiary-container": "#66d486",
+                "on-tertiary": "#ffffff"
+              },
+              fontFamily: {
+                "headline": ["Public Sans"],
+                "body": ["Inter"],
+                "label": ["Inter"]
+              },
+              borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #fcf9f8;
+            font-family: 'Inter', sans-serif;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #00376d 0%, #004d96 100%);
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+<!-- TopAppBar -->
+<header class="bg-[#e5e2e1] backdrop-blur-md sticky top-0 z-50">
+<div class="flex justify-between items-center w-full px-8 py-4 max-w-none">
+<div class="flex items-center gap-4">
+<span class="text-2xl font-black text-[#1b1c1c] font-headline tracking-tight">Civic Pulse</span>
+<div class="hidden md:block h-6 w-px bg-outline-variant/30"></div>
+<span class="hidden md:block text-[#1b1c1c]/70 font-headline font-bold text-sm tracking-widest">DISTRICT GOVERNANCE</span>
+</div>
+<div class="flex items-center gap-6">
+<!-- Language Toggle Pill -->
+<div class="bg-surface-container-low p-1 rounded-full flex items-center">
+<button class="bg-primary text-on-primary px-4 py-1.5 rounded-full text-sm font-semibold transition-all">English</button>
+<button class="text-on-surface-variant px-4 py-1.5 text-sm font-medium hover:text-primary transition-colors">हिन्दी</button>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-grow flex items-center justify-center p-6 relative overflow-hidden">
+<!-- Background Decorative Elements -->
+<div class="absolute top-0 left-0 w-full h-1/2 bg-surface-container-low -z-10"></div>
+<div class="absolute bottom-[-10%] right-[-5%] w-96 h-96 bg-primary/5 rounded-full blur-3xl -z-10"></div>
+<!-- Login Container -->
+<div class="w-full max-w-5xl grid grid-cols-1 md:grid-cols-12 bg-surface-container-lowest overflow-hidden shadow-2xl shadow-on-surface/5 rounded-xl">
+<!-- Left Side: Editorial Branding -->
+<div class="md:col-span-5 hero-gradient p-12 text-on-primary flex flex-col justify-between">
+<div>
+<div class="mb-8 opacity-90">
+<span class="material-symbols-outlined text-5xl mb-4" style="font-variation-settings: 'FILL' 1;">account_balance</span>
+<h2 class="text-4xl font-black font-headline tracking-tighter leading-none mb-2">The Digital Pillar</h2>
+<p class="text-primary-fixed-dim font-medium tracking-wide">Government of India | District Portal</p>
+</div>
+<div class="space-y-6 mt-12">
+<div class="flex gap-4 items-start">
+<span class="material-symbols-outlined mt-1 text-tertiary-fixed">verified_user</span>
+<div>
+<p class="font-bold text-lg leading-tight">Secure Access</p>
+<p class="text-sm text-primary-fixed/70">Multi-factor authentication enabled for all administrative levels.</p>
+</div>
+</div>
+<div class="flex gap-4 items-start">
+<span class="material-symbols-outlined mt-1 text-tertiary-fixed">gavel</span>
+<div>
+<p class="font-bold text-lg leading-tight">Institutional Integrity</p>
+<p class="text-sm text-primary-fixed/70">Access logs are audited as per national cybersecurity guidelines.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-12 pt-8 border-t border-white/10">
+<div class="flex items-center gap-2 mb-4">
+<span class="text-xs font-bold uppercase tracking-widest text-primary-fixed/50">Authorized Personnel Only</span>
+</div>
+<img alt="State Emblem of India" class="h-16 w-auto opacity-40" data-alt="National Emblem of India in white line art" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1jX7uNieVxNmZgUilwkajIH1L_-bzcO2eVDaf3ESXlTO-iwinKIm7sg8-hu9OzFp8cfrqFrBYX_aazxleBcdBCFoI5a-cg5otEFuxCH31nUfkJ3_mFKQ8O3RQC1qrlcPS0mmUL3TeIowIsXkyERXgLcJsLG4STOluLyrhfQ7NFJzTPuUl3N4QnkNXnovKUkXl2Dzn4V2y9-PJ3J0_PaRr7tX7j2hkicMshCFnFP5UpHNbb-UhFmGegLL_hUTQTAbMTyqzPw1qjQ"/>
+</div>
+</div>
+<!-- Right Side: Form Content -->
+<div class="md:col-span-7 p-12 bg-surface">
+<div class="max-w-md mx-auto">
+<div class="mb-10 text-left">
+<h1 class="text-4xl font-black text-on-surface font-headline tracking-tighter mb-2">Officer Login</h1>
+<h2 class="text-2xl font-bold text-primary font-headline">अधिकारी लॉगिन</h2>
+<div class="h-1 w-12 bg-secondary-container mt-4"></div>
+</div>
+<form class="space-y-8">
+<!-- Login ID Field -->
+<div class="space-y-2">
+<div class="flex justify-between items-end">
+<label class="text-sm font-bold text-on-surface-variant flex gap-2 items-center">
+                                    Login ID / लॉगिन आईडी
+                                </label>
+<span class="text-[10px] text-primary/60 font-black uppercase tracking-tighter">Required</span>
+</div>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors">person</span>
+<input class="w-full h-14 pl-12 pr-4 bg-surface-container-highest border-none rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all font-medium text-on-surface" placeholder="Enter ID" type="text"/>
+</div>
+</div>
+<!-- Password Field -->
+<div class="space-y-2">
+<div class="flex justify-between items-end">
+<label class="text-sm font-bold text-on-surface-variant flex gap-2 items-center">
+                                    Password / पासवर्ड
+                                </label>
+<a class="text-xs font-bold text-secondary hover:text-primary transition-colors" href="#">Forgot? / भूल गए?</a>
+</div>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors">lock</span>
+<input class="w-full h-14 pl-12 pr-4 bg-surface-container-highest border-none rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all font-medium text-on-surface" placeholder="••••••••" type="password"/>
+</div>
+</div>
+<!-- Login Button -->
+<div class="pt-4">
+<button class="w-full h-16 bg-primary text-on-primary rounded-md font-bold text-lg flex items-center justify-center gap-3 hover:bg-primary-container active:scale-[0.98] transition-all group shadow-lg shadow-primary/10" type="submit">
+<span>Login / लॉगिन</span>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</form>
+<!-- Verification Message -->
+<div class="mt-12 flex items-center gap-4 p-4 bg-surface-container-low rounded-lg">
+<div class="bg-tertiary-fixed p-2 rounded-full">
+<span class="material-symbols-outlined text-on-tertiary-fixed" style="font-variation-settings: 'FILL' 1;">encrypted</span>
+</div>
+<div>
+<p class="text-xs font-bold text-on-surface">Identity Verified Access</p>
+<p class="text-[11px] text-on-surface-variant">This session is monitored by the District IT Council.</p>
+</div>
+</div>
+<!-- Assistance -->
+<div class="mt-10 flex justify-center gap-8">
+<a class="text-xs font-bold text-on-surface-variant hover:text-primary flex items-center gap-2 group" href="#">
+<span class="material-symbols-outlined text-sm group-hover:rotate-12 transition-transform">help_outline</span>
+                            Need Assistance? / सहायता चाहिए?
+                        </a>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-[#f6f3f2]">
+<div class="w-full py-12 px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex flex-col gap-2">
+<span class="font-bold text-[#1b1c1c] font-headline">Civic Pulse</span>
+<p class="font-body text-sm leading-relaxed text-[#1b1c1c]/60 max-w-xs">© 2024 Civic Pulse. All rights reserved. Official Government Portal.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="text-[#1b1c1c]/60 text-sm font-body hover:text-[#00376d] transition-colors" href="#">Privacy Policy</a>
+<a class="text-[#1b1c1c]/60 text-sm font-body hover:text-[#00376d] transition-colors" href="#">Terms of Service</a>
+<a class="text-[#1b1c1c]/60 text-sm font-body hover:text-[#00376d] transition-colors" href="#">Accessibility Statement</a>
+<a class="text-[#1b1c1c]/60 text-sm font-body hover:text-[#00376d] transition-colors" href="#">Contact Us</a>
+</div>
+</div>
+</footer>
+</body></html>
