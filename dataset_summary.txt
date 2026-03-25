@@ -1,0 +1,31 @@
+# Civic Issues Complaint Dataset Summary
+
+### 📊 Dataset Overview
+- **File Name:** `final_combined_dataset.csv`
+- **Total Rows:** `11,650` tuples representing synthetic public civic complaints.
+- **Data Columns:** `ID (#)`, `Category`, `Subcategory`, `Complaint Text`, `Char Count`, `label`, `label_name`, and normalized `clean_text`.
+- **Text Length:** The complaints average **128 words per complaint**, ranging from **14 to 226 words**. 
+
+### 🗂️ Domain Categorization
+The dataset is well-balanced across 8 major multi-class categorization labels (ideal for training ML/DL classifiers):
+- **Health** (Label 4) - 1,584 rows
+- **Water & Sanitation** (Label 6) - 1,543 rows
+- **Electricity** (Label 1) - 1,536 rows
+- **Infrastructure** (Label 5) - 1,529 rows
+- **Education** (Label 0) - 1,507 rows
+- **Environment** (Label 3) - 1,371 rows
+- **Revenue & Civic** (Label 7) - 1,312 rows
+- **Public Safety** (Label 2) - 1,248 rows
+
+### 📍 Geographical Specificity
+The dataset features hyper-localized noise, making it highly tailored to real-world Indian contexts rather than generic AI text: 
+- **Delhi** (`~1745 rows`): Contains specific complaints regarding MCD, DTC, NDMC, Yamuna pollution, smog towers, and L-G administration.
+- **Bhilai / Durg** (`~1793 rows`): Unique deep-context data referencing the Bhilai Steel Plant (BSP), coal dust issues, Maitri Bagh, missing civic amenities in BSP sectors, and CSPTCL.
+- **Indian Metro Cities** (`~822 rows`): High-context terms specific to Mumbai (BMC, local trains, BEST), Bangalore (BBMP, Namma Metro, Bellandur Lake froth), Chennai (Cooum River, MTC), Hyderabad, Kolkata, and Pune.
+- **Pan-India Context** (`~7290 rows`): General urban and rural Indian civic administration challenges faced nationwide.
+
+### 🚀 Potential NLP Use Cases
+1. **Multi-class Text Classification**: Predicting the civic category or department directly from the grievance text.
+2. **Named Entity Recognition (NER)**: Identifying locations, authorities (e.g., BBMP, PWD, DISCOMs), and issue keywords.
+3. **Topic Modeling**: Uncovering prevalent latent issues within civic administration.
+4. **Sentiment / Urgency Analysis**: Detecting how urgent or frustrated the citizen is based on the complaint text.
