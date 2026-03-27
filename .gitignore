@@ -54,3 +54,10 @@ app.*.map.json
 
 # Keep this if you intentionally version design HTML exports under frontend/designs
 # frontend/designs/
+
+# Deep Learning Data & Checkpoints
+dl+nlp/archive*/
+dl+nlp/*.pth
+dl+nlp/*.safetensors
+*.csv
+Text_Classification/data/*.csv
