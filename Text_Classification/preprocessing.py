@@ -18,9 +18,17 @@ nltk.download('omw-1.4',     quiet=True)
 stop_words  = set(stopwords.words('english'))
 lemmatizer  = WordNetLemmatizer()
 
-# ── Load raw dataset ─────────────────────────────────────────
-df = pd.read_csv(r"C:\Users\samik\OneDrive\Desktop\Text Classification\final_combined_dataset.csv")
-print(f"Loaded {len(df)} complaints")
+# ── Load raw datasets (English + Hindi) ──────────────────────
+df_eng = pd.read_csv(r"D:\git clone\IIH26-civicpulse\final_combined_dataset.csv")
+df_hin = pd.read_csv(r"D:\git clone\IIH26-civicpulse\hindi_dataset_11650.csv")
+
+# Ensure columns align before concatenating
+df = pd.concat([df_eng, df_hin], ignore_index=True)
+# Drop duplicates just in case
+df = df.drop_duplicates(subset=['Complaint Text']).reset_index(drop=True)
+
+print(f"Loaded {len(df_eng)} English and {len(df_hin)} Hindi complaints.")
+print(f"Total combined complaints: {len(df)}")
 
 # ── Label encoding ───────────────────────────────────────────
 # We classify at the Category level (7 classes)

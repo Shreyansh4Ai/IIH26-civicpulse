@@ -1,0 +1,7 @@
+data/*.csv
+models/bert_*
+tmp_trainer/
+__pycache__/
+*.pth
+*.safetensors
+.ipynb_checkpoints/

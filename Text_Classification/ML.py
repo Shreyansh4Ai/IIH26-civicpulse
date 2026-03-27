@@ -23,12 +23,14 @@ from sklearn.pipeline           import Pipeline
 
 # ── Load data ────────────────────────────────────────────────
 df = pd.read_csv("data/processed.csv")
+df = df.dropna(subset=['Complaint Text'])  # Use original text so Hindi isn't deleted
+
 with open("data/label_map.json") as f:
     maps = json.load(f)
 label2id = maps['label2id']
 id2label = {int(k): v for k, v in maps['id2label'].items()}
 
-X = df['clean_text']
+X = df['Complaint Text']  # Raw text contains both English & intact Hindi characters!
 y = df['label']
 
 # ── Train / test split ───────────────────────────────────────
@@ -45,16 +47,16 @@ print(f"Train size : {len(X_train)} | Test size : {len(X_test)}")
 # max_features: top N most frequent terms
 # ngram_range : include single words AND two-word phrases
 tfidf = TfidfVectorizer(
-    max_features = 5000,
+    max_features = 40000,
     ngram_range  = (1, 2),
     sublinear_tf = True    # apply log(tf) to reduce impact of very frequent words
 )
 
-# ── Compare 3 classifiers ────────────────────────────────────
+# ── Compare classifiers ────────────────────────────────────
 classifiers = {
-    "Logistic Regression": LogisticRegression(max_iter=1000, C=5, class_weight='balanced'),
-    "Linear SVM"         : LinearSVC(max_iter=2000, C=1.0, class_weight='balanced'),
-    "Naive Bayes"        : MultinomialNB(alpha=0.5)
+    "Logistic Regression": LogisticRegression(max_iter=2000, C=10, class_weight='balanced'),
+    "Linear SVM"         : LinearSVC(max_iter=3000, C=1.5, class_weight='balanced'),
+    "Naive Bayes"        : MultinomialNB(alpha=0.1)
 }
 
 print("\n" + "=" * 55)

@@ -50,7 +50,7 @@ if USE_BERT:
     model.eval()
 
     def predict(text: str) -> dict:
-        cleaned = clean_text(text)
+        cleaned = text
         inputs  = tokenizer(cleaned, return_tensors='pt',
                             truncation=True, max_length=128)
         with torch.no_grad():
@@ -69,7 +69,7 @@ else:
     pipeline = joblib.load("models/tfidf_pipeline.pkl")
 
     def predict(text: str) -> dict:
-        cleaned    = clean_text(text)
+        cleaned    = text
         pred_id    = int(pipeline.predict([cleaned])[0])
         # get probability scores if available
         try:

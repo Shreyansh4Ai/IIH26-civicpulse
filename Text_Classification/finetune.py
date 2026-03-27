@@ -24,11 +24,12 @@ import torch
 print(torch.cuda.is_available())
 
 # ── Config ───────────────────────────────────────────────────
-MODEL_NAME  = "bert-base-uncased"   # change to "ai4bharat/indic-bert" for Hindi
+MODEL_NAME  = "xlm-roberta-base"   # swapped to highly optimized cross-lingual model
 MAX_LEN     = 128
-BATCH_SIZE  = 8
-EPOCHS      = 5
-LR          = 2e-5
+BATCH_SIZE  = 1  # 4GB VRAM limit requires bare minimum
+ACCUM_STEPS = 16 # 1 * 16 = 16 effective batch size
+EPOCHS      = 10     # XLM-R convergence requires fewer epochs usually 
+LR          = 2e-5   # Lower learning rate handles RoBERTa fine-tuning better than 3e-5
 
 # ── Load data ────────────────────────────────────────────────
 df = pd.read_csv("data/processed.csv")
@@ -40,7 +41,7 @@ NUM_LABELS = len(label2id)
 
 # ── Split ────────────────────────────────────────────────────
 train_df, test_df = train_test_split(
-    df[['clean_text','label']], test_size=0.2,
+    df[['Complaint Text','label']], test_size=0.2,
     random_state=42, stratify=df['label']
 )
 # Further split train → train + validation
@@ -54,18 +55,18 @@ tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
 
 def tokenize_fn(batch):
     return tokenizer(
-        batch['clean_text'],
+        batch['Complaint Text'],
         truncation = True,
         max_length = MAX_LEN,
-        padding    = False      # DataCollatorWithPadding pads dynamically per batch
+        padding    = False      # DataCollatorWithPadding pads dynamically per batch        
     )
 
-# ── HuggingFace Dataset objects ──────────────────────────────
+# ── HuggingFace Dataset objects ────────────────────────────────────────────────────────
 def make_hf_dataset(dataframe):
     ds = Dataset.from_pandas(
         dataframe.rename(columns={'label': 'labels'}).reset_index(drop=True)
     )
-    return ds.map(tokenize_fn, batched=True, remove_columns=['clean_text'])
+    return ds.map(tokenize_fn, batched=True, remove_columns=['Complaint Text'])
 
 train_ds = make_hf_dataset(train_df)
 val_ds   = make_hf_dataset(val_df)
@@ -94,7 +95,9 @@ training_args = TrainingArguments(
     output_dir                  = "models/bert_checkpoints",
     num_train_epochs            = EPOCHS,
     per_device_train_batch_size = BATCH_SIZE,
-    per_device_eval_batch_size  = BATCH_SIZE * 2,
+    per_device_eval_batch_size  = BATCH_SIZE,
+    gradient_accumulation_steps = ACCUM_STEPS,
+    dataloader_num_workers      = 0,
     learning_rate               = LR,
     weight_decay                = 0.01,
     eval_strategy               = "epoch",
@@ -116,13 +119,17 @@ trainer = Trainer(
     processing_class = tokenizer,       # ← renamed
     data_collator    = DataCollatorWithPadding(tokenizer),
     compute_metrics  = compute_metrics,
-    callbacks        = [EarlyStoppingCallback(early_stopping_patience=2)]
+    callbacks        = [EarlyStoppingCallback(early_stopping_patience=3)]
 )
 
 print("\n" + "=" * 55)
 print(f"FINE-TUNING {MODEL_NAME} for {EPOCHS} epochs")
 print("=" * 55)
-trainer.train()
+try:
+    trainer.train(resume_from_checkpoint=True)
+except Exception as e:
+    print(f"Resume failed: {e}. Starting fresh...")
+    trainer.train()
 
 # ── Evaluate on test set ─────────────────────────────────────
 print("\nEvaluating on test set...")
