@@ -6,6 +6,7 @@ import '../../widgets/civic_app_bar.dart';
 import '../../widgets/civic_bottom_nav.dart';
 import '../../widgets/civic_footer.dart';
 import '../../widgets/civic_side_nav.dart';
+import '../../utils/global_state.dart';
 
 class TrackStatusScreen extends StatefulWidget {
   const TrackStatusScreen({super.key});
@@ -18,26 +19,40 @@ class _TrackStatusScreenState extends State<TrackStatusScreen> {
   final Map<String, bool> _feedbackExpanded = {};
   final Map<String, TextEditingController> _feedbackControllers = {};
 
-  final List<({String id, String title, String status, Color tone})> _items = [
-    (
-      id: 'CP-2026-00142',
-      title: 'Streetlight outage near Sector 5',
-      status: 'In Progress',
-      tone: AppColors.secondary,
-    ),
-    (
-      id: 'CP-2026-00118',
-      title: 'Water leakage on Main Road',
-      status: 'Assigned',
+  List<({String id, String title, String status, Color tone, String? department})> get _items {
+    final aiItems = GlobalState.mockComplaints.map<({String id, String title, String status, Color tone, String? department})>((c) => (
+      id: c['id'] as String,
+      title: c['title'] as String,
+      status: c['status'] as String,
+      department: c['department'] as String,
       tone: AppColors.primary,
-    ),
-    (
-      id: 'CP-2026-00097',
-      title: 'Garbage pickup delay',
-      status: 'Resolved',
-      tone: AppColors.tertiary,
-    ),
-  ];
+    )).toList();
+
+    return [
+      ...aiItems,
+      (
+        id: 'CP-2026-00142',
+        title: 'Streetlight outage near Sector 5',
+        status: 'In Progress',
+        department: null,
+        tone: AppColors.secondary,
+      ),
+      (
+        id: 'CP-2026-00118',
+        title: 'Water leakage on Main Road',
+        status: 'Assigned',
+        department: null,
+        tone: AppColors.primary,
+      ),
+      (
+        id: 'CP-2026-00097',
+        title: 'Garbage pickup delay',
+        status: 'Resolved',
+        department: null,
+        tone: AppColors.tertiary,
+      ),
+    ];
+  }
 
   @override
   void dispose() {
@@ -69,22 +84,34 @@ class _TrackStatusScreenState extends State<TrackStatusScreen> {
       bottomNavigationBar: isDesktop
           ? null
           : CivicBottomNav(
-              activeIndex: 2,
+              activeIndex: GlobalState.isOfficer ? 0 : 2,
+              isOfficer: GlobalState.isOfficer,
               onTap: (index) {
-                if (index == 0) {
-                  Navigator.pushReplacementNamed(context, '/citizen-dashboard');
-                } else if (index == 1) {
-                  Navigator.pushReplacementNamed(
-                    context,
-                    '/register-complaint',
-                  );
-                } else if (index == 2) {
-                  Navigator.pushReplacementNamed(context, '/track-status');
-                } else if (index == 3) {
-                  Navigator.pushReplacementNamed(context, '/complete-profile');
+                if (GlobalState.isOfficer) {
+                  if (index == 0) {
+                    Navigator.pushReplacementNamed(context, '/officer-dashboard');
+                  } else if (index == 3) {
+                    Navigator.pushReplacementNamed(context, '/complete-profile');
+                  }
+                } else {
+                  if (index == 0) {
+                    Navigator.pushReplacementNamed(context, '/citizen-dashboard');
+                  } else if (index == 1) {
+                    Navigator.pushReplacementNamed(
+                      context,
+                      '/register-complaint',
+                    );
+                  } else if (index == 2) {
+                    Navigator.pushReplacementNamed(context, '/track-status');
+                  } else if (index == 3) {
+                    Navigator.pushReplacementNamed(context, '/complete-profile');
+                  }
                 }
               },
             ),
+      drawer: isDesktop ? null : Drawer(
+        child: CivicSideNav(variant: GlobalState.isOfficer ? 'officer' : 'citizen', activeIndex: GlobalState.isOfficer ? 0 : 2),
+      ),
       body: isDesktop ? _desktopLayout(context) : _mobileLayout(context),
     );
   }
@@ -260,6 +287,17 @@ class _TrackStatusScreenState extends State<TrackStatusScreen> {
                                 color: AppColors.onSurface,
                               ),
                             ),
+                            if (item.department != null) ...[
+                              const SizedBox(height: 4),
+                              Text(
+                                'Dept: ${item.department}',
+                                style: GoogleFonts.inter(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w600,
+                                  color: AppColors.primary,
+                                ),
+                              ),
+                            ],
                           ],
                         ),
                       ),
@@ -360,6 +398,30 @@ class _TrackStatusScreenState extends State<TrackStatusScreen> {
                               ),
                             ),
                             style: GoogleFonts.inter(fontSize: 14),
+                          ),
+                          const SizedBox(height: 12),
+                          SizedBox(
+                            width: double.infinity,
+                            child: ElevatedButton(
+                              onPressed: () {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(content: Text('Feedback submitted successfully! Thank you.')),
+                                );
+                                _toggleFeedback(item.id);
+                                _controllerFor(item.id).clear();
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: AppColors.primary,
+                                foregroundColor: AppColors.onPrimary,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                              ),
+                              child: Text(
+                                'Submit Feedback',
+                                style: GoogleFonts.inter(fontWeight: FontWeight.bold),
+                              ),
+                            ),
                           ),
                         ],
                       ),

@@ -19,9 +19,9 @@ class HelpFaqScreen extends StatelessWidget {
         child: Column(
           children: [
             _buildHeroSearch(isDesktop),
-            _buildCategories(isDesktop),
+            _buildCategories(context, isDesktop),
             _buildFaqs(isDesktop),
-            _buildStillNeedHelp(isDesktop),
+            _buildStillNeedHelp(context, isDesktop),
             const CivicFooter(),
           ],
         ),
@@ -33,7 +33,12 @@ class HelpFaqScreen extends StatelessWidget {
     return Container(
       width: double.infinity,
       color: AppColors.surfaceContainerLowest,
-      padding: EdgeInsets.fromLTRB(isDesktop ? 64 : 24, 80, isDesktop ? 64 : 24, 64),
+      padding: EdgeInsets.fromLTRB(
+        isDesktop ? 64 : 24,
+        80,
+        isDesktop ? 64 : 24,
+        64,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -68,19 +73,25 @@ class HelpFaqScreen extends StatelessWidget {
                   color: Colors.black.withValues(alpha: 0.05),
                   blurRadius: 20,
                   offset: const Offset(0, 10),
-                )
+                ),
               ],
             ),
             child: TextField(
               decoration: InputDecoration(
                 hintText: 'Search knowledge base... (e.g. "Track Status")',
-                hintStyle: GoogleFonts.inter(fontSize: 18, color: AppColors.onSurfaceVariant),
+                hintStyle: GoogleFonts.inter(
+                  fontSize: 18,
+                  color: AppColors.onSurfaceVariant,
+                ),
                 prefixIcon: const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 24.0),
                   child: Icon(Icons.search, size: 32, color: AppColors.primary),
                 ),
                 border: InputBorder.none,
-                contentPadding: const EdgeInsets.symmetric(vertical: 24, horizontal: 24),
+                contentPadding: const EdgeInsets.symmetric(
+                  vertical: 24,
+                  horizontal: 24,
+                ),
               ),
               style: GoogleFonts.inter(fontSize: 18),
             ),
@@ -90,7 +101,7 @@ class HelpFaqScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildCategories(bool isDesktop) {
+  Widget _buildCategories(BuildContext context, bool isDesktop) {
     return Padding(
       padding: EdgeInsets.symmetric(
         horizontal: isDesktop ? 64 : 24,
@@ -111,30 +122,102 @@ class HelpFaqScreen extends StatelessWidget {
           isDesktop
               ? Row(
                   children: [
-                    Expanded(child: _categoryCard('Getting Started', 'Account creation & basics', Icons.rocket_launch, AppColors.primaryContainer, AppColors.onPrimaryContainer)),
+                    Expanded(
+                      child: _categoryCard(
+                        context,
+                        'Getting Started',
+                        'Account creation & basics',
+                        Icons.rocket_launch,
+                        AppColors.primaryContainer,
+                        AppColors.onPrimaryContainer,
+                      ),
+                    ),
                     const SizedBox(width: 24),
-                    Expanded(child: _categoryCard('Aadhaar Verification', 'e-KYC & linking issues', Icons.fingerprint, AppColors.secondaryContainer, AppColors.onSecondaryContainer)),
+                    Expanded(
+                      child: _categoryCard(
+                        context,
+                        'Aadhaar Verification',
+                        'e-KYC & linking issues',
+                        Icons.fingerprint,
+                        AppColors.secondaryContainer,
+                        AppColors.onSecondaryContainer,
+                      ),
+                    ),
                     const SizedBox(width: 24),
-                    Expanded(child: _categoryCard('Tracking Status', 'Understanding timelines', Icons.track_changes, AppColors.tertiaryContainer, AppColors.onTertiaryContainer)),
+                    Expanded(
+                      child: _categoryCard(
+                        context,
+                        'Tracking Status',
+                        'Understanding timelines',
+                        Icons.track_changes,
+                        AppColors.tertiaryContainer,
+                        AppColors.onTertiaryContainer,
+                      ),
+                    ),
                     const SizedBox(width: 24),
-                    Expanded(child: _categoryCard('Technical Support', 'App errors & bugs', Icons.support_agent, AppColors.errorContainer, AppColors.onErrorContainer)),
+                    Expanded(
+                      child: _categoryCard(
+                        context,
+                        'Technical Support',
+                        'App errors & bugs',
+                        Icons.support_agent,
+                        AppColors.errorContainer,
+                        AppColors.onErrorContainer,
+                      ),
+                    ),
                   ],
                 )
               : Column(
                   children: [
                     Row(
                       children: [
-                        Expanded(child: _categoryCard('Getting Started', 'Account basics', Icons.rocket_launch, AppColors.primaryContainer, AppColors.onPrimaryContainer)),
+                        Expanded(
+                          child: _categoryCard(
+                            context,
+                            'Getting Started',
+                            'Account basics',
+                            Icons.rocket_launch,
+                            AppColors.primaryContainer,
+                            AppColors.onPrimaryContainer,
+                          ),
+                        ),
                         const SizedBox(width: 16),
-                        Expanded(child: _categoryCard('Verify', 'e-KYC issues', Icons.fingerprint, AppColors.secondaryContainer, AppColors.onSecondaryContainer)),
+                        Expanded(
+                          child: _categoryCard(
+                            context,
+                            'Verify',
+                            'e-KYC issues',
+                            Icons.fingerprint,
+                            AppColors.secondaryContainer,
+                            AppColors.onSecondaryContainer,
+                          ),
+                        ),
                       ],
                     ),
                     const SizedBox(height: 16),
                     Row(
                       children: [
-                        Expanded(child: _categoryCard('Tracking', 'Timeline query', Icons.track_changes, AppColors.tertiaryContainer, AppColors.onTertiaryContainer)),
+                        Expanded(
+                          child: _categoryCard(
+                            context,
+                            'Tracking',
+                            'Timeline query',
+                            Icons.track_changes,
+                            AppColors.tertiaryContainer,
+                            AppColors.onTertiaryContainer,
+                          ),
+                        ),
                         const SizedBox(width: 16),
-                        Expanded(child: _categoryCard('Tech Support', 'App errors', Icons.support_agent, AppColors.errorContainer, AppColors.onErrorContainer)),
+                        Expanded(
+                          child: _categoryCard(
+                            context,
+                            'Tech Support',
+                            'App errors',
+                            Icons.support_agent,
+                            AppColors.errorContainer,
+                            AppColors.onErrorContainer,
+                          ),
+                        ),
                       ],
                     ),
                   ],
@@ -144,42 +227,60 @@ class HelpFaqScreen extends StatelessWidget {
     );
   }
 
-  Widget _categoryCard(String title, String subtitle, IconData icon, Color bg, Color textC) {
-    return Container(
-      padding: const EdgeInsets.all(32),
-      decoration: BoxDecoration(
-        color: bg,
-        borderRadius: BorderRadius.circular(24),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: Colors.white.withValues(alpha: 0.5),
-              borderRadius: BorderRadius.circular(16),
-            ),
-            child: Icon(icon, color: textC, size: 32),
-          ),
-          const SizedBox(height: 32),
-          Text(
-            title,
-            style: GoogleFonts.publicSans(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              color: textC,
+  Widget _categoryCard(
+    BuildContext context,
+    String title,
+    String subtitle,
+    IconData icon,
+    Color bg,
+    Color textC,
+  ) {
+    return GestureDetector(
+      onTap: () {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              'Help articles for "$title" are currently being updated in the demo.',
             ),
           ),
-          const SizedBox(height: 8),
-          Text(
-            subtitle,
-            style: GoogleFonts.inter(
-              fontSize: 14,
-              color: textC.withValues(alpha: 0.8),
+        );
+      },
+      child: Container(
+        padding: const EdgeInsets.all(32),
+        decoration: BoxDecoration(
+          color: bg,
+          borderRadius: BorderRadius.circular(24),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Colors.white.withValues(alpha: 0.5),
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Icon(icon, color: textC, size: 32),
             ),
-          ),
-        ],
+            const SizedBox(height: 32),
+            Text(
+              title,
+              style: GoogleFonts.publicSans(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: textC,
+              ),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              subtitle,
+              style: GoogleFonts.inter(
+                fontSize: 14,
+                color: textC.withValues(alpha: 0.8),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -236,7 +337,9 @@ class HelpFaqScreen extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.surfaceContainerLowest,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: AppColors.outlineVariant.withValues(alpha: 0.3)),
+        border: Border.all(
+          color: AppColors.outlineVariant.withValues(alpha: 0.3),
+        ),
       ),
       child: Theme(
         data: ThemeData(dividerColor: Colors.transparent),
@@ -270,7 +373,7 @@ class HelpFaqScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildStillNeedHelp(bool isDesktop) {
+  Widget _buildStillNeedHelp(BuildContext context, bool isDesktop) {
     return Padding(
       padding: EdgeInsets.symmetric(
         horizontal: isDesktop ? 64 : 24,
@@ -302,7 +405,9 @@ class HelpFaqScreen extends StatelessWidget {
                           'Can\'t find the answer you\'re looking for? Our support team is ready to assist you.',
                           style: GoogleFonts.inter(
                             fontSize: 18,
-                            color: AppColors.onPrimaryContainer.withValues(alpha: 0.8),
+                            color: AppColors.onPrimaryContainer.withValues(
+                              alpha: 0.8,
+                            ),
                           ),
                         ),
                       ],
@@ -310,16 +415,26 @@ class HelpFaqScreen extends StatelessWidget {
                   ),
                   const SizedBox(width: 48),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/contact-us');
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.primary,
                       foregroundColor: AppColors.onPrimary,
-                      padding: const EdgeInsets.symmetric(horizontal: 48, vertical: 24),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 48,
+                        vertical: 24,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
                     ),
                     child: Text(
                       'Contact Support',
-                      style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 16),
+                      style: GoogleFonts.inter(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
                     ),
                   ),
                 ],
@@ -340,7 +455,9 @@ class HelpFaqScreen extends StatelessWidget {
                     'Can\'t find the answer you\'re looking for? Our support team is ready to assist you.',
                     style: GoogleFonts.inter(
                       fontSize: 16,
-                      color: AppColors.onPrimaryContainer.withValues(alpha: 0.8),
+                      color: AppColors.onPrimaryContainer.withValues(
+                        alpha: 0.8,
+                      ),
                     ),
                     textAlign: TextAlign.center,
                   ),
@@ -348,16 +465,23 @@ class HelpFaqScreen extends StatelessWidget {
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/contact-us');
+                      },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.primary,
                         foregroundColor: AppColors.onPrimary,
                         padding: const EdgeInsets.symmetric(vertical: 20),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
                       ),
                       child: Text(
                         'Contact Support',
-                        style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 16),
+                        style: GoogleFonts.inter(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
                       ),
                     ),
                   ),

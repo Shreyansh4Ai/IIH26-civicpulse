@@ -4,20 +4,30 @@ import '../theme/app_colors.dart';
 
 /// Bottom navigation bar for mobile dashboard views.
 class CivicBottomNav extends StatelessWidget {
-  const CivicBottomNav({super.key, this.activeIndex = 0, this.onTap});
+  const CivicBottomNav({super.key, this.activeIndex = 0, this.onTap, this.isOfficer = false});
 
   final int activeIndex;
   final ValueChanged<int>? onTap;
+  final bool isOfficer;
 
-  static const _items = <(IconData, String)>[
+  static const _citizenItems = <(IconData, String)>[
     (Icons.grid_view, 'Dashboard'),
     (Icons.add_box_outlined, 'Register'),
     (Icons.analytics_outlined, 'Track'),
     (Icons.account_circle, 'Profile'),
   ];
 
+  static const _officerItems = <(IconData, String)>[
+    (Icons.grid_view, 'Dashboard'),
+    (Icons.assignment_late, 'Reports'),
+    (Icons.bar_chart, 'Analytics'),
+    (Icons.account_circle, 'Profile'),
+  ];
+
   @override
   Widget build(BuildContext context) {
+    final items = isOfficer ? _officerItems : _citizenItems;
+
     return Container(
       height: 80,
       decoration: BoxDecoration(
@@ -36,7 +46,7 @@ class CivicBottomNav extends StatelessWidget {
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: _items.asMap().entries.map((e) {
+        children: items.asMap().entries.map((e) {
           final isActive = e.key == activeIndex;
           return GestureDetector(
             onTap: () => onTap?.call(e.key),

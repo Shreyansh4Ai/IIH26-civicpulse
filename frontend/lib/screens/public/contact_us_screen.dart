@@ -20,7 +20,7 @@ class ContactUsScreen extends StatelessWidget {
           children: [
             _buildHero(isDesktop),
             _buildContactCards(isDesktop),
-            _buildFormAndMap(isDesktop),
+            _buildFormAndMap(context, isDesktop),
             const CivicFooter(),
           ],
         ),
@@ -195,21 +195,21 @@ class ContactUsScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildFormAndMap(bool isDesktop) {
+  Widget _buildFormAndMap(BuildContext context, bool isDesktop) {
     return Padding(
       padding: EdgeInsets.fromLTRB(isDesktop ? 64 : 24, 0, isDesktop ? 64 : 24, 80),
       child: isDesktop
           ? Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Expanded(flex: 7, child: _buildForm()),
+                Expanded(flex: 7, child: _buildForm(context)),
                 const SizedBox(width: 64),
                 Expanded(flex: 5, child: _buildMapSection()),
               ],
             )
           : Column(
               children: [
-                _buildForm(),
+                _buildForm(context),
                 const SizedBox(height: 64),
                 _buildMapSection(),
               ],
@@ -217,7 +217,7 @@ class ContactUsScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildForm() {
+  Widget _buildForm(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(48),
       decoration: BoxDecoration(
@@ -271,7 +271,11 @@ class ContactUsScreen extends StatelessWidget {
           _formField('MESSAGE / संदेश', 'Write your message here...', maxLines: 5),
           const SizedBox(height: 32),
           ElevatedButton.icon(
-            onPressed: () {},
+            onPressed: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Message sent successfully! We will get back to you soon.')),
+              );
+            },
             style: ElevatedButton.styleFrom(
               backgroundColor: AppColors.secondaryContainer,
               foregroundColor: AppColors.onSecondaryContainer,

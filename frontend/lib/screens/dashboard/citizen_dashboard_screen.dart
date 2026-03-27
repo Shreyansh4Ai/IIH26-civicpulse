@@ -35,6 +35,9 @@ class CitizenDashboardScreen extends StatelessWidget {
                 }
               },
             ),
+      drawer: isDesktop ? null : const Drawer(
+        child: CivicSideNav(variant: 'citizen', activeIndex: 0),
+      ),
       body: isDesktop ? _desktopLayout(context) : _mobileLayout(context),
     );
   }
@@ -64,9 +67,9 @@ class CitizenDashboardScreen extends StatelessWidget {
                           const SizedBox(height: 48),
                           _statsRow(true),
                           const SizedBox(height: 48),
-                          _requestsSection(true),
-                          const SizedBox(height: 48),
-                          _supportBanner(),
+                            _requestsSection(context, true),
+                            const SizedBox(height: 48),
+                            _supportBanner(context),
                           const SizedBox(height: 48),
                           const CivicFooter(),
                         ],
@@ -95,7 +98,7 @@ class CitizenDashboardScreen extends StatelessWidget {
                 _heroSection(context, false),
                 _statsRow(false),
                 const SizedBox(height: 24),
-                _requestsSection(false),
+                  _requestsSection(context, false),
                 const SizedBox(height: 24),
                 _neighborhoodPulse(),
                 const SizedBox(height: 24),
@@ -282,7 +285,7 @@ class CitizenDashboardScreen extends StatelessWidget {
     );
   }
 
-  Widget _requestsSection(bool isDesktop) {
+  Widget _requestsSection(BuildContext context, bool isDesktop) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: isDesktop ? 0 : 24),
       child: Column(
@@ -314,7 +317,9 @@ class CitizenDashboardScreen extends StatelessWidget {
                 ],
               ),
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushReplacementNamed(context, '/track-status');
+                },
                 child: Row(
                   children: [
                     Text(
@@ -487,7 +492,7 @@ class CitizenDashboardScreen extends StatelessWidget {
     );
   }
 
-  Widget _supportBanner() {
+  Widget _supportBanner(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(32),
       decoration: BoxDecoration(
@@ -521,7 +526,9 @@ class CitizenDashboardScreen extends StatelessWidget {
                 SizedBox(
                   height: 48,
                   child: ElevatedButton.icon(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/contact-us');
+                    },
                     icon: const Icon(Icons.contact_support, size: 18),
                     label: Text(
                       'Contact Support',

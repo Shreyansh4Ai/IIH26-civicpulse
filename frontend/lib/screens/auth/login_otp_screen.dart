@@ -5,6 +5,7 @@ import '../../theme/app_colors.dart';
 import '../../utils/responsive_helper.dart';
 import '../../widgets/civic_app_bar.dart';
 import '../../widgets/civic_footer.dart';
+import '../../utils/global_state.dart';
 
 /// Citizen OTP Login screen — responsive mobile + desktop.
 class LoginOtpScreen extends StatefulWidget {
@@ -375,7 +376,10 @@ class _LoginOtpScreenState extends State<LoginOtpScreen> {
           SizedBox(
             width: double.infinity, height: 56,
             child: ElevatedButton(
-              onPressed: () => Navigator.pushReplacementNamed(context, '/citizen-dashboard'),
+              onPressed: () {
+                GlobalState.isOfficer = false;
+                Navigator.pushReplacementNamed(context, '/citizen-dashboard');
+              },
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.primary,
                 foregroundColor: AppColors.onPrimary,
@@ -400,7 +404,11 @@ class _LoginOtpScreenState extends State<LoginOtpScreen> {
           SizedBox(
             width: double.infinity, height: 56,
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Aadhar verification is temporarily disabled in this demo.')),
+                );
+              },
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.secondaryContainer,
                 foregroundColor: AppColors.onSecondaryContainer,

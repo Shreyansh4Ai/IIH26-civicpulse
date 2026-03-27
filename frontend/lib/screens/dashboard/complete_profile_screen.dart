@@ -4,11 +4,21 @@ import '../../theme/app_colors.dart';
 import '../../utils/responsive_helper.dart';
 import '../../widgets/civic_app_bar.dart';
 import '../../widgets/civic_bottom_nav.dart';
+import '../../widgets/civic_side_nav.dart';
 import '../../widgets/civic_footer.dart';
+import '../../utils/global_state.dart';
 
 /// Complete Profile Screen — responsive mobile + desktop.
-class CompleteProfileScreen extends StatelessWidget {
+class CompleteProfileScreen extends StatefulWidget {
   const CompleteProfileScreen({super.key});
+
+  @override
+  State<CompleteProfileScreen> createState() => _CompleteProfileScreenState();
+}
+
+class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
+  String _selectedGender = 'Male';
+  bool _photoUploaded = false;
 
   @override
   Widget build(BuildContext context) {
@@ -19,18 +29,27 @@ class CompleteProfileScreen extends StatelessWidget {
           ? null
           : CivicBottomNav(
               activeIndex: 3,
+              isOfficer: GlobalState.isOfficer,
               onTap: (index) {
-                if (index == 0) {
-                  Navigator.pushReplacementNamed(context, '/citizen-dashboard');
-                } else if (index == 1) {
-                  Navigator.pushReplacementNamed(
-                    context,
-                    '/register-complaint',
-                  );
-                } else if (index == 2) {
-                  Navigator.pushReplacementNamed(context, '/track-status');
-                } else if (index == 3) {
-                  Navigator.pushReplacementNamed(context, '/complete-profile');
+                if (GlobalState.isOfficer) {
+                  if (index == 0) {
+                    Navigator.pushReplacementNamed(context, '/officer-dashboard');
+                  } else if (index == 3) {
+                    Navigator.pushReplacementNamed(context, '/complete-profile');
+                  }
+                } else {
+                  if (index == 0) {
+                    Navigator.pushReplacementNamed(context, '/citizen-dashboard');
+                  } else if (index == 1) {
+                    Navigator.pushReplacementNamed(
+                      context,
+                      '/register-complaint',
+                    );
+                  } else if (index == 2) {
+                    Navigator.pushReplacementNamed(context, '/track-status');
+                  } else if (index == 3) {
+                    Navigator.pushReplacementNamed(context, '/complete-profile');
+                  }
                 }
               },
             ),
@@ -175,93 +194,122 @@ class CompleteProfileScreen extends StatelessWidget {
   }
 
   Widget _photoUploadSurface(bool isDesktop) {
-    return Column(
-      children: [
-        Stack(
-          children: [
-            Container(
-              width: isDesktop ? 256 : 128,
-              height: isDesktop ? 320 : 128,
-              decoration: BoxDecoration(
-                color: AppColors.surfaceContainerHighest,
-                borderRadius: BorderRadius.circular(isDesktop ? 16 : 100),
-                border: Border.all(
-                  color: isDesktop
-                      ? AppColors.outlineVariant
-                      : AppColors.surfaceContainerLow,
-                  width: isDesktop ? 2 : 4,
-                  style: isDesktop ? BorderStyle.solid : BorderStyle.solid,
-                ),
-              ),
-              child: Center(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(
-                      isDesktop ? Icons.upload_file : Icons.person,
-                      size: isDesktop ? 48 : 56,
-                      color: AppColors.outline,
-                    ),
-                    if (isDesktop) ...[
-                      const SizedBox(height: 16),
-                      Text(
-                        'Upload Passport Size Photo',
-                        style: GoogleFonts.inter(
-                          fontSize: 13,
-                          fontWeight: FontWeight.w700,
-                          color: AppColors.onSurfaceVariant,
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        'JPEG or PNG, Max 2MB',
-                        style: GoogleFonts.inter(
-                          fontSize: 12,
-                          color: AppColors.outline,
-                        ),
-                      ),
-                    ],
-                  ],
-                ),
-              ),
-            ),
-            if (!isDesktop) // Floating action button for mobile
-              Positioned(
-                bottom: 0,
-                right: 0,
-                child: Container(
-                  padding: const EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                    color: AppColors.primary,
-                    shape: BoxShape.circle,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withValues(alpha: 0.1),
-                        blurRadius: 8,
-                      ),
-                    ],
-                  ),
-                  child: const Icon(
-                    Icons.photo_camera,
-                    color: Colors.white,
-                    size: 20,
-                  ),
-                ),
-              ),
-          ],
-        ),
-        if (!isDesktop) ...[
-          const SizedBox(height: 16),
-          Text(
-            'Upload a clear passport-sized photo (Max 2MB)',
-            style: GoogleFonts.inter(
-              fontSize: 12,
-              fontWeight: FontWeight.w600,
-              color: AppColors.onSurfaceVariant,
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          _photoUploaded = !_photoUploaded; // Toggle mock uploaded state
+        });
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              _photoUploaded
+                  ? 'Photo uploaded successfully!'
+                  : 'Photo removed.',
             ),
           ),
+        );
+      },
+      child: Column(
+        children: [
+          Stack(
+            children: [
+              Container(
+                width: isDesktop ? 256 : 128,
+                height: isDesktop ? 320 : 128,
+                decoration: BoxDecoration(
+                  color: _photoUploaded
+                      ? AppColors.primaryContainer
+                      : AppColors.surfaceContainerHighest,
+                  borderRadius: BorderRadius.circular(isDesktop ? 16 : 100),
+                  border: Border.all(
+                    color: isDesktop
+                        ? AppColors.outlineVariant
+                        : AppColors.surfaceContainerLow,
+                    width: isDesktop ? 2 : 4,
+                    style: isDesktop ? BorderStyle.solid : BorderStyle.solid,
+                  ),
+                ),
+                child: Center(
+                  child: _photoUploaded
+                      ? Icon(
+                          Icons.check_circle,
+                          size: isDesktop ? 64 : 56,
+                          color: AppColors.primary,
+                        )
+                      : Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(
+                              isDesktop ? Icons.upload_file : Icons.person,
+                              size: isDesktop ? 48 : 56,
+                              color: AppColors.outline,
+                            ),
+                            if (isDesktop) ...[
+                              const SizedBox(height: 16),
+                              Text(
+                                'Upload Passport Size Photo',
+                                style: GoogleFonts.inter(
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w700,
+                                  color: AppColors.onSurfaceVariant,
+                                ),
+                              ),
+                              const SizedBox(height: 8),
+                              Text(
+                                'JPEG or PNG, Max 2MB',
+                                style: GoogleFonts.inter(
+                                  fontSize: 12,
+                                  color: AppColors.outline,
+                                ),
+                              ),
+                            ],
+                          ],
+                        ),
+                ),
+              ),
+              if (!isDesktop &&
+                  !_photoUploaded) // Floating action button for mobile
+                Positioned(
+                  bottom: 0,
+                  right: 0,
+                  child: Container(
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      color: AppColors.primary,
+                      shape: BoxShape.circle,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withValues(alpha: 0.1),
+                          blurRadius: 8,
+                        ),
+                      ],
+                    ),
+                    child: const Icon(
+                      Icons.photo_camera,
+                      color: Colors.white,
+                      size: 20,
+                    ),
+                  ),
+                ),
+            ],
+          ),
+          if (!isDesktop) ...[
+            const SizedBox(height: 16),
+            Text(
+              _photoUploaded
+                  ? 'Photo attached'
+                  : 'Upload a clear passport-sized photo (Max 2MB)',
+              style: GoogleFonts.inter(
+                fontSize: 12,
+                fontWeight: FontWeight.w600,
+                color: _photoUploaded
+                    ? AppColors.primary
+                    : AppColors.onSurfaceVariant,
+              ),
+            ),
+          ],
         ],
-      ],
+      ),
     );
   }
 
@@ -398,7 +446,7 @@ class CompleteProfileScreen extends StatelessWidget {
                       child: ElevatedButton(
                         onPressed: () => Navigator.pushReplacementNamed(
                           context,
-                          '/citizen-dashboard',
+                          GlobalState.isOfficer ? '/officer-dashboard' : '/citizen-dashboard',
                         ),
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.primary,
@@ -442,7 +490,7 @@ class CompleteProfileScreen extends StatelessWidget {
               ElevatedButton(
                 onPressed: () => Navigator.pushReplacementNamed(
                   context,
-                  '/citizen-dashboard',
+                  GlobalState.isOfficer ? '/officer-dashboard' : '/citizen-dashboard',
                 ),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.secondaryContainer,
@@ -560,34 +608,42 @@ class CompleteProfileScreen extends StatelessWidget {
         const SizedBox(height: 8),
         Row(
           children: [
-            Expanded(child: _genderPill('Male', true)),
+            Expanded(child: _genderPill('Male')),
             const SizedBox(width: 16),
-            Expanded(child: _genderPill('Female', false)),
+            Expanded(child: _genderPill('Female')),
             const SizedBox(width: 16),
-            Expanded(child: _genderPill('Other', false)),
+            Expanded(child: _genderPill('Other')),
           ],
         ),
       ],
     );
   }
 
-  Widget _genderPill(String label, bool isSelected) {
-    return Container(
-      height: 56,
-      decoration: BoxDecoration(
-        color: isSelected ? AppColors.primaryFixed : Colors.transparent,
-        border: Border.all(
-          color: isSelected ? AppColors.primary : AppColors.outlineVariant,
-          width: 2,
+  Widget _genderPill(String label) {
+    final isSelected = _selectedGender == label;
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          _selectedGender = label;
+        });
+      },
+      child: Container(
+        height: 56,
+        decoration: BoxDecoration(
+          color: isSelected ? AppColors.primaryFixed : Colors.transparent,
+          border: Border.all(
+            color: isSelected ? AppColors.primary : AppColors.outlineVariant,
+            width: 2,
+          ),
+          borderRadius: BorderRadius.circular(8),
         ),
-        borderRadius: BorderRadius.circular(8),
-      ),
-      alignment: Alignment.center,
-      child: Text(
-        label,
-        style: GoogleFonts.inter(
-          fontWeight: FontWeight.w600,
-          color: isSelected ? AppColors.onPrimaryFixed : AppColors.onSurface,
+        alignment: Alignment.center,
+        child: Text(
+          label,
+          style: GoogleFonts.inter(
+            fontWeight: FontWeight.w600,
+            color: isSelected ? AppColors.onPrimaryFixed : AppColors.onSurface,
+          ),
         ),
       ),
     );

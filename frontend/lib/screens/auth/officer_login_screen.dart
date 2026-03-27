@@ -4,6 +4,7 @@ import '../../theme/app_colors.dart';
 import '../../utils/responsive_helper.dart';
 import '../../widgets/civic_app_bar.dart';
 import '../../widgets/civic_footer.dart';
+import '../../utils/global_state.dart';
 
 /// Officer Login screen — responsive mobile + desktop.
 class OfficerLoginScreen extends StatefulWidget {
@@ -233,7 +234,11 @@ class _OfficerLoginScreenState extends State<OfficerLoginScreen> {
               fontSize: 13, fontWeight: FontWeight.w700, color: AppColors.onSurfaceVariant,
             )),
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Password reset link sent to registered official email!')),
+                );
+              },
               child: Text('Forgot? / भूल गए?', style: GoogleFonts.inter(
                 fontSize: 12, fontWeight: FontWeight.w700, color: AppColors.secondary,
               )),
@@ -252,10 +257,13 @@ class _OfficerLoginScreenState extends State<OfficerLoginScreen> {
 
         // Login button
         SizedBox(
-          width: double.infinity,
-          height: isDesktop ? 64 : 56,
-          child: ElevatedButton(
-            onPressed: () => Navigator.pushReplacementNamed(context, '/officer-dashboard'),
+            width: double.infinity,
+            height: isDesktop ? 64 : 56,
+            child: ElevatedButton(
+              onPressed: () {
+                GlobalState.isOfficer = true;
+                Navigator.pushReplacementNamed(context, '/officer-dashboard');
+              },
             style: ElevatedButton.styleFrom(
               backgroundColor: AppColors.primary,
               foregroundColor: AppColors.onPrimary,

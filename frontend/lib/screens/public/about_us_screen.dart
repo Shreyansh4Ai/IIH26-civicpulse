@@ -23,7 +23,7 @@ class AboutUsScreen extends StatelessWidget {
             _buildCoreValues(isDesktop),
             _buildImpactStats(isDesktop),
             _buildStakeholders(isDesktop),
-            _buildCTA(isDesktop),
+            _buildCTA(context, isDesktop),
             const CivicFooter(),
           ],
         ),
@@ -431,7 +431,7 @@ class AboutUsScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildCTA(bool isDesktop) {
+  Widget _buildCTA(BuildContext context, bool isDesktop) {
     return Padding(
       padding: EdgeInsets.fromLTRB(isDesktop ? 64 : 24, 0, isDesktop ? 64 : 24, isDesktop ? 128 : 80),
       child: Container(
@@ -467,7 +467,9 @@ class AboutUsScreen extends StatelessWidget {
             ),
             const SizedBox(height: 40),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, '/register-complaint');
+              },
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.secondaryContainer,
                 foregroundColor: AppColors.onSecondaryContainer,

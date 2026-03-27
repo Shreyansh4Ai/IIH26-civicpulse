@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../theme/app_colors.dart';
+import '../utils/global_state.dart';
 
 /// Side navigation rail for desktop dashboard views.
 /// [variant] controls which nav items appear: 'citizen' or 'officer'.
@@ -87,7 +88,8 @@ class CivicSideNav extends StatelessWidget {
               child: ElevatedButton.icon(
                 onPressed: () {
                   if (!isOfficer) {
-                    Navigator.pushNamed(context, '/register-complaint');
+                    Navigator.pushNamed(context, '/register-complaint');                  } else {
+                    Navigator.pushReplacementNamed(context, '/officer-dispatch');
                   }
                 },
                 icon: Icon(isOfficer ? Icons.add_task : Icons.add, size: 20),
@@ -179,15 +181,34 @@ class CivicSideNav extends StatelessWidget {
           ),
         ),
         onTap: () {
-          if (variant != 'citizen') {
-            return;
-          }
-          if (label == 'Dashboard') {
-            Navigator.pushReplacementNamed(context, '/citizen-dashboard');
-          } else if (label == 'File Complaint') {
-            Navigator.pushReplacementNamed(context, '/register-complaint');
-          } else if (label == 'Track Status') {
-            Navigator.pushReplacementNamed(context, '/track-status');
+          if (variant == 'citizen') {
+            if (label == 'Dashboard') {
+              Navigator.pushReplacementNamed(context, '/citizen-dashboard');      
+            } else if (label == 'File Complaint') {
+              Navigator.pushReplacementNamed(context, '/register-complaint');     
+            } else if (label == 'Track Status') {
+              Navigator.pushReplacementNamed(context, '/track-status');
+            }
+          } else {
+            // Officer Logic
+            if (label == 'Dashboard') {
+              Navigator.pushReplacementNamed(context, '/officer-dashboard');            } else if (label == 'Complaints' || label == 'New Dispatch') {
+              Navigator.pushReplacementNamed(context, '/officer-dispatch');            } else if (label == 'Analytics') {
+              Navigator.pushReplacementNamed(context, '/officer-analytics');
+            } else if (label == 'Access Control') {
+              Navigator.pushReplacementNamed(context, '/officer-access');
+            } else if (label == 'Archive') {
+              Navigator.pushReplacementNamed(context, '/officer-archive');
+            } else if (label == 'Help Center') {
+              Navigator.pushReplacementNamed(context, '/help-faq');
+            } else if (label == 'Logout') {
+              GlobalState.isOfficer = false;
+              Navigator.pushReplacementNamed(context, '/'); // Return to login
+            } else {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('Opening $label...')),
+              );
+            }
           }
         },
       ),

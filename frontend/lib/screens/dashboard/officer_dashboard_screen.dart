@@ -18,7 +18,22 @@ class OfficerDashboardScreen extends StatelessWidget {
       backgroundColor: AppColors.surface,
       bottomNavigationBar: isDesktop
           ? null
-          : const CivicBottomNav(activeIndex: 0),
+          : CivicBottomNav(
+              activeIndex: 0,
+              isOfficer: true,
+              onTap: (index) {
+                if (index == 0) {
+                  Navigator.pushReplacementNamed(context, '/officer-dashboard');
+                } else if (index == 3) {
+                  Navigator.pushReplacementNamed(context, '/complete-profile');
+                }
+              },
+            ),
+      drawer: isDesktop
+          ? null
+          : const Drawer(
+              child: CivicSideNav(variant: 'officer', activeIndex: 0),
+            ),
       body: isDesktop ? _desktopLayout(context) : _mobileLayout(context),
     );
   }
@@ -50,13 +65,13 @@ class OfficerDashboardScreen extends StatelessWidget {
                               const SizedBox(height: 48),
                               _metricsGrid(),
                               const SizedBox(height: 48),
-                              _mainContent(true),
+                              _mainContent(context, true),
                             ],
                           ),
                         ),
                       ),
                       // Map Section
-                      _mapSection(),
+                      _mapSection(context),
                       const SizedBox(height: 48),
                       const CivicFooter(),
                     ],
@@ -83,7 +98,7 @@ class OfficerDashboardScreen extends StatelessWidget {
                 _heroSection(false),
                 _mobileStats(),
                 const SizedBox(height: 24),
-                _mobileComplaintCards(),
+                _mobileComplaintCards(context),
                 const SizedBox(height: 24),
                 const CivicFooter(),
               ],
@@ -211,7 +226,7 @@ class OfficerDashboardScreen extends StatelessWidget {
   }
 
   // ─── DESKTOP: 3-col layout (queue 2/3 + insights 1/3) ───
-  Widget _mainContent(bool isDesktop) {
+  Widget _mainContent(BuildContext context, bool isDesktop) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -246,7 +261,9 @@ class OfficerDashboardScreen extends StatelessWidget {
                     ],
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushReplacementNamed(context, '/track-status');
+                    },
                     child: Row(
                       children: [
                         Text(
@@ -280,7 +297,7 @@ class OfficerDashboardScreen extends StatelessWidget {
             children: [
               _categoryInsights(),
               const SizedBox(height: 32),
-              _criticalActions(),
+              _criticalActions(context),
             ],
           ),
         ),
@@ -535,7 +552,7 @@ class OfficerDashboardScreen extends StatelessWidget {
     );
   }
 
-  Widget _criticalActions() {
+  Widget _criticalActions(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -554,6 +571,13 @@ class OfficerDashboardScreen extends StatelessWidget {
           Icons.description,
           AppColors.surfaceContainerLowest,
           AppColors.primary,
+          () {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Report generation initiated. Gathering data...'),
+              ),
+            );
+          },
         ),
         const SizedBox(height: 12),
         _actionButton(
@@ -562,6 +586,15 @@ class OfficerDashboardScreen extends StatelessWidget {
           Icons.engineering,
           AppColors.surfaceContainerLowest,
           AppColors.secondary,
+          () {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text(
+                  'Field team dispatch requested. Waiting for confirmation...',
+                ),
+              ),
+            );
+          },
         ),
         const SizedBox(height: 12),
         _actionButton(
@@ -570,6 +603,15 @@ class OfficerDashboardScreen extends StatelessWidget {
           Icons.emergency,
           AppColors.errorContainer,
           AppColors.error,
+          () {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text(
+                  'Emergency Alert Broadcasted to all field units!',
+                ),
+              ),
+            );
+          },
         ),
       ],
     );
@@ -581,46 +623,53 @@ class OfficerDashboardScreen extends StatelessWidget {
     IconData icon,
     Color bg,
     Color accent,
+    VoidCallback onTap,
   ) {
-    return Container(
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: bg,
-        borderRadius: BorderRadius.circular(12),
-        border: Border(left: BorderSide(color: accent, width: 4)),
-        boxShadow: [
-          BoxShadow(color: Colors.black.withValues(alpha: 0.03), blurRadius: 4),
-        ],
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                label.toUpperCase(),
-                style: GoogleFonts.inter(
-                  fontSize: 13,
-                  fontWeight: FontWeight.w700,
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          color: bg,
+          borderRadius: BorderRadius.circular(12),
+          border: Border(left: BorderSide(color: accent, width: 4)),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.03),
+              blurRadius: 4,
+            ),
+          ],
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  label.toUpperCase(),
+                  style: GoogleFonts.inter(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
-              ),
-              Text(
-                hindiLabel,
-                style: GoogleFonts.inter(
-                  fontSize: 10,
-                  color: AppColors.onSurfaceVariant,
+                Text(
+                  hindiLabel,
+                  style: GoogleFonts.inter(
+                    fontSize: 10,
+                    color: AppColors.onSurfaceVariant,
+                  ),
                 ),
-              ),
-            ],
-          ),
-          Icon(icon, color: accent, size: 22),
-        ],
+              ],
+            ),
+            Icon(icon, color: accent, size: 22),
+          ],
+        ),
       ),
     );
   }
 
-  Widget _mapSection() {
+  Widget _mapSection(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 32),
       child: Container(
@@ -680,7 +729,15 @@ class OfficerDashboardScreen extends StatelessWidget {
             ),
             const SizedBox(height: 24),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text(
+                      'GIS map loading in progress. Note: Advanced Maps disabled in demo mode.',
+                    ),
+                  ),
+                );
+              },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.white,
                 foregroundColor: AppColors.primary,
@@ -751,7 +808,7 @@ class OfficerDashboardScreen extends StatelessWidget {
   }
 
   // ─── MOBILE: Complaint Cards ───
-  Widget _mobileComplaintCards() {
+  Widget _mobileComplaintCards(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24),
       child: Column(
@@ -768,23 +825,28 @@ class OfficerDashboardScreen extends StatelessWidget {
                   color: AppColors.onSurface,
                 ),
               ),
-              Row(
-                children: [
-                  Text(
-                    'All',
-                    style: GoogleFonts.inter(
-                      fontWeight: FontWeight.w700,
-                      fontSize: 13,
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushReplacementNamed(context, '/track-status');
+                },
+                child: Row(
+                  children: [
+                    Text(
+                      'All',
+                      style: GoogleFonts.inter(
+                        fontWeight: FontWeight.w700,
+                        fontSize: 13,
+                        color: AppColors.primary,
+                      ),
+                    ),
+                    const SizedBox(width: 4),
+                    const Icon(
+                      Icons.arrow_forward,
+                      size: 14,
                       color: AppColors.primary,
                     ),
-                  ),
-                  const SizedBox(width: 4),
-                  const Icon(
-                    Icons.arrow_forward,
-                    size: 14,
-                    color: AppColors.primary,
-                  ),
-                ],
+                  ],
+                ),
               ),
             ],
           ),
